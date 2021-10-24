@@ -1,0 +1,12 @@
+PowerLog3.0.exe -file autovect_os.csv -cmd autovect_os.exe
+PowerLog3.0.exe -file autovect_o1.csv -cmd autovect_o1.exe
+PowerLog3.0.exe -file autovect_o2.csv -cmd autovect_o2.exe
+PowerLog3.0.exe -file autovect_o2_omp.csv -cmd autovect_o2_omp.exe
+PowerLog3.0.exe -file autovect_o3_wvec.csv -cmd autovect_o3_wvec.exe
+PowerLog3.0.exe -file autovect_o3.csv -cmd autovect_o3.exe
+PowerLog3.0.exe -file autovect_ofast.csv -cmd autovect_ofast.exe
+PowerLog3.0.exe -file autovect_o3_wvec_omp.csv -cmd autovect_o3_wvec_omp.exe
+PowerLog3.0.exe -file autovect_o3_omp.csv -cmd autovect_o3_omp.exe
+PowerLog3.0.exe -file autovect_ofast_omp.csv -cmd autovect_ofast_omp.exe
+PowerLog3.0.exe -file autovect_ofast_1.csv -cmd autovect_ofast_1.exe
+PowerLog3.0.exe -file autovect_ofast_1_omp.csv -cmd autovect_ofast_1_omp.exe
