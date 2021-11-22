@@ -1,0 +1,6 @@
+read2-data
+*.dat
+*.o
+*.gcda
+*.gcno
+knn
