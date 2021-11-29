@@ -1,0 +1,137 @@
+# callgrind format
+version: 1
+creator: xtree-1
+pid: 13452
+cmd: ./knn
+
+positions: line
+event: curB : currently allocated Bytes
+event: curBk : currently allocated Blocks
+event: totB : total allocated Bytes
+event: totBk : total allocated Blocks
+event: totFdB : total Freed Bytes
+event: totFdBk : total Freed Blocks
+events: curB  curBk  totB  totBk  totFdB  totFdBk 
+fl=(1) UnknownFile???
+fn=(1) main
+0
+cfi=(1)
+cfn=(2) puts
+calls=0 0
+0 0 0 1024 1 0 0
+fl=(1)
+fn=(2)
+0
+cfi=(1)
+cfn=(3) _IO_file_xsputn@@GLIBC_2.2.5
+calls=0 0
+0 0 0 1024 1 0 0
+fl=(1)
+fn=(3)
+0
+cfi=(1)
+cfn=(4) _IO_file_overflow@@GLIBC_2.2.5
+calls=0 0
+0 0 0 1024 1 0 0
+fl=(1)
+fn=(4)
+0
+cfi=(1)
+cfn=(5) _IO_doallocbuf
+calls=0 0
+0 0 0 1024 1 0 0
+fl=(1)
+fn=(5)
+0
+cfi=(1)
+cfn=(6) _IO_file_doallocate
+calls=0 0
+0 0 0 1024 1 0 0
+fl=(1)
+fn=(6)
+0 0 0 1024 1 0 0
+
+fl=(1)
+fn=(1)
+0
+cfi=(1)
+cfn=(7) timer_init
+calls=0 0
+0 0 0 24 1 0 0
+fl=(1)
+fn=(7)
+0 0 0 24 1 0 0
+
+fl=(1)
+fn=(1)
+0
+cfi=(1)
+cfn=(7)
+calls=0 0
+0 0 0 16 1 0 0
+fl=(1)
+fn=(7)
+0 0 0 16 1 0 0
+
+fl=(1)
+fn=(1)
+0
+cfi=(1)
+cfn=(8) timer_destroy
+calls=0 0
+0 0 0 0 0 16 1
+fl=(1)
+fn=(8)
+0 0 0 0 0 16 1
+
+fl=(1)
+fn=(1)
+0
+cfi=(1)
+cfn=(8)
+calls=0 0
+0 0 0 0 0 24 1
+fl=(1)
+fn=(8)
+0 0 0 0 0 24 1
+
+fl=(1)
+fn=(9) (below main)
+0
+cfi=(1)
+cfn=(10) exit
+calls=0 0
+0 0 0 0 0 1024 1
+fl=(1)
+fn=(10)
+0
+cfi=(1)
+cfn=(11) __run_exit_handlers
+calls=0 0
+0 0 0 0 0 1024 1
+fl=(1)
+fn=(11)
+0
+cfi=(2) /build/valgrind/src/valgrind-3.17.0/coregrind/vg_preloaded.c
+cfn=(12) _vgnU_freeres
+calls=0 74
+0 0 0 0 0 1024 1
+fl=(2)
+fn=(12)
+74
+cfi=(1)
+cfn=(13) __libc_freeres
+calls=0 0
+74 0 0 0 0 1024 1
+fl=(1)
+fn=(13)
+0
+cfi=(1)
+cfn=(14) buffer_free
+calls=0 0
+0 0 0 0 0 1024 1
+fl=(1)
+fn=(14)
+0 0 0 0 0 1024 1
+
+totals: 0 0 1064 3 1064 3

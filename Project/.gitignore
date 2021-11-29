@@ -4,3 +4,4 @@ read2-data
 *.gcda
 *.gcno
 knn
+*.out

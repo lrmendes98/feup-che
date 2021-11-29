@@ -1,7 +1,8 @@
 /**
-*	FEUP.DEI, v0.5 November 2021
+*	FEUP.DEI, v0.6 November 2021
 *
-*	Scenario A: without using files for input data
+*	Scenario A1, WISDM dataset: without using files for input data
+*	Files for scenario must be copied from scenario-wisdm/
 *	READ 1
 *	NUM_TRAINING_SAMPLES 4336
 *	NUM_TESTING_SAMPLES 1082
@@ -9,8 +10,35 @@
 *	NUM_CLASSES 6
 *	TIMMING 0 or *1*
 *	ACCURACY 0 or *1*
-*	NORMALIZE 0 or *1*
-*	K 3 or 20
+*	NORMALIZE 0 or *1*  // use 1
+*	K = 3 or 20
+* 	DATA_TYPE = float or double
+*
+*	Scenario A2, generated dataset: without using files for input data
+*	Files for scenario must be copied from scenario-gen100x8x10000/
+*	READ 1
+*	NUM_TRAINING_SAMPLES 8004
+*	NUM_TESTING_SAMPLES 1996
+*	NUM_FEATURES 100
+*	NUM_CLASSES 8
+*	TIMMING 0 or *1*
+*	ACCURACY 0 or *1*
+*	NORMALIZE 0 or *1* // use 1
+*	K = 20
+* 	DATA_TYPE = float or double
+*
+*	Scenario A3, generated dataset: without using files for input data
+*	Files for scenario must be copied from scenario-gen100x8x50000/
+*	READ 1
+*	NUM_TRAINING_SAMPLES 40002
+*	NUM_TESTING_SAMPLES 9998
+*	NUM_FEATURES 100
+*	NUM_CLASSES 8
+*	TIMMING 0 or *1*
+*	ACCURACY 0 or *1*
+*	NORMALIZE 0 or *1* // use 1
+*	K = 20
+* 	DATA_TYPE = float or double
 *
 * 	Scenario B: using random data
 *	READ 3
@@ -20,7 +48,7 @@
 *	NUM_CLASSES *name of the file is used to identify a specific configuration*
 *	TIMMING 0 or *1*
 *	ACCURACY *0* or 1
-*	NORMALIZE *0* or 1
+*	NORMALIZE *0* or 1 // use 1
 *
 * 	Scenario C: using files for input data
 *	READ 2
@@ -30,12 +58,12 @@
 *	NUM_CLASSES *from file*
 *	TIMMING 0 or *1*
 *	ACCURACY *0* or 1
-*	NORMALIZE *0* or 1
+*	NORMALIZE *0* or 1 // use 1
 *
 */
 
 #ifndef TIMMING
-	#define TIMMING 1 // 0: without; 1: Linux; 2: Windows (not implemented), 3: specific timers (not implemented)
+	#define TIMMING 1 // 0: without; 1: Linux/Windows, 2: specific timers (not implemented)
 #endif
 
 #ifndef READ
@@ -45,7 +73,7 @@
 #ifndef VERIFY
 	#define VERIFY 0 	// 0: none verification; 
 						// 1: to verify if the results are according to the ones expected
-						// only for READ = 1 or READ = 2
+						// only for READ = 1, scenario A1, or READ = 2
 #endif
 
 #ifndef ACCURACY
@@ -60,10 +88,10 @@
 #include <stdio.h>
 
 #include "params.h"
-#include "knn.h"
-#include "utils.h"
 #include "types.h"
+#include "utils.h"
 #include "io.h"
+#include "knn.h"
 
 #if TIMMING == 1
 	#include "timer.h"
@@ -89,7 +117,7 @@
 
 #if defined VERIFY  // verify if classifications are still the original
 #if READ == 1
-	char key[NUM_TESTING_SAMPLES] = {
+	unsigned char key[NUM_TESTING_SAMPLES] = {
 		#if K == 20
 			#include "key-READ1-k20.dat"
 		#elif K == 3
@@ -97,7 +125,7 @@
 		#endif
 	};
 #else
-	char *key = NULL; // The classification key
+	CLASS_ID_TYPE *key = NULL; // The classification key
 #endif
 #endif
 
@@ -107,8 +135,9 @@ int main(int argc, char **argv) {
     int num_points, num_classes, num_new_points, k;
 	
 	const int num_features = NUM_FEATURES;
-    
+	
 	#if READ == 1 // data embedded in program
+		printf("Data points initialized with WISDM dataset...\n");
 		k = K;
         num_classes = NUM_CLASSES;
         num_points = NUM_TRAINING_SAMPLES;
@@ -129,35 +158,37 @@ int main(int argc, char **argv) {
 		DATA_TYPE min[num_features];		
 		DATA_TYPE max[num_features];
 		
-		minmax(min, max, num_points, known_points, num_features);
-		minmax_normalize(min, max, num_points, known_points, num_features);
-		minmax_normalize(min, max, num_new_points, new_points, num_features);
+		// determine min and max from known points
+		minmax(min, max, num_points, known_points, num_features); 
 		
-		//minmax(min, max, num_points, known_points, num_features);
+		// normalize known points
+		minmax_normalize(min, max, num_points, known_points, num_features);
+		
+		// normalize new points
+		minmax_normalize(min, max, num_new_points, new_points, num_features);
 	#endif
 	
     printf("Executing kNN...\n");
-	
-	#if TIMMING == 1
-		Timer *timer = timer_init();	
-		timer_start(timer);
-	#endif	
 
-	
+	#if TIMMING == 1
+		Timer *timer = timer_init();
+		timer_start(timer);
+	#endif
+
 	BestPoint best_points[k]; // Array with the k nearest points to the Point to classify
 
 	#if ACCURACY == 1 && READ != 3
 		int fail = 0; // count the number of test instances incorrectly classified
 	#endif
 	
-
 	// loop over the input instances to classify.
 	// Note that depending on the application this can be strreaming instances,
 	// instances arriving as streaming data, etc.
 	// Here assume that the loop below needs run in serial mode and the 
 	// value of num_new_point is just to test
-    for (int i = 0; i < num_new_points; ++i) {
-        char class = classifyinstance(new_points[i], k, best_points, num_classes, 
+    for (int i = 0; i < num_new_points; i++) {
+		
+        CLASS_ID_TYPE class = classifyinstance(new_points[i], k, best_points, num_classes, 
 										known_points, num_points, num_features);
 		//if(i==0) show_point(new_points[i],num_features);
 		
@@ -170,6 +201,7 @@ int main(int argc, char **argv) {
 		//printf("%d,",class);
 		printf("class id: %d\n",class);
     }
+	
 
 	#if TIMMING == 1
 		timer_stop(timer);
