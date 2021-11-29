@@ -86,6 +86,7 @@
 #endif
 
 #include <stdio.h>
+#include <omp.h>
 
 #include "params.h"
 #include "types.h"
