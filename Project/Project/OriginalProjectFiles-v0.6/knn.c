@@ -65,21 +65,31 @@ void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, BestPoint *best_poin
 */
 void knn(Point new_point, Point *known_points, int num_points, 
 		BestPoint *best_points, int k,  int num_features) {
-
+    
     // calculate the Euclidean distance between the Point to classify and each one in the model
     // and update the k best points if needed
-    for (int i = 0; i < num_points; i++) {
-        DATA_TYPE distance = (DATA_TYPE) 0.0;
+    
+    DATA_TYPE distance = (DATA_TYPE) 0.0;
+    DATA_TYPE diff;
+    
+    // #pragma omp parallel shared(distance) private(diff) 
+    // {
+        int j;
+        #pragma omp parallel for private(j) \
+            reduction(distance)
+        for (int i = 0; i < num_points; i++) {
 
-        // calculate the Euclidean distance
-        for (int j = 0; j < num_features; j++) {
-            DATA_TYPE diff = (DATA_TYPE) new_point.features[j] - (DATA_TYPE) known_points[i].features[j];
-            distance += diff * diff;
+            // calculate the Euclidean distance
+           
+            for (j = 0; j < num_features; j++) {
+                diff = (DATA_TYPE) new_point.features[j] - (DATA_TYPE) known_points[i].features[j];
+                distance += diff * diff;
+            }
+            distance = sqrt(distance);
+
+            update_best(distance, known_points[i].classification_id, best_points, k);		
         }
-        distance = sqrt(distance);
-
-        update_best(distance, known_points[i].classification_id, best_points, k);		
-    }
+    // }
 }
 
 /*
