@@ -71,25 +71,21 @@ void knn(Point new_point, Point *known_points, int num_points,
     
     DATA_TYPE distance = (DATA_TYPE) 0.0;
     DATA_TYPE diff;
+    int j;
     
-    // #pragma omp parallel shared(distance) private(diff) 
-    // {
-        int j;
-        #pragma omp parallel for private(j) \
-            reduction(distance)
-        for (int i = 0; i < num_points; i++) {
+    #pragma omp parallel for \
+        private(j,diff) reduction(+:distance)
 
-            // calculate the Euclidean distance
-           
-            for (j = 0; j < num_features; j++) {
-                diff = (DATA_TYPE) new_point.features[j] - (DATA_TYPE) known_points[i].features[j];
-                distance += diff * diff;
-            }
-            distance = sqrt(distance);
-
-            update_best(distance, known_points[i].classification_id, best_points, k);		
+    for (int i = 0; i < num_points; i++) {
+        // calculate the Euclidean distance
+        for (j = 0; j < num_features; j++) {
+            diff = (DATA_TYPE) new_point.features[j] - (DATA_TYPE) known_points[i].features[j];
+            distance += diff * diff;
         }
-    // }
+        distance = sqrt(distance);
+
+        update_best(distance, known_points[i].classification_id, best_points, k);		
+    }
 }
 
 /*
