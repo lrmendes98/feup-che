@@ -24,12 +24,14 @@ void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID,
 				BestPoint *best_points, int k);
 
 
-void knn(Point new_point, Point *known_points, int num_points, BestPoint *best_points, 
+void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, 
+		Point *known_points, int num_points, BestPoint *best_points, 
 		int k,  int num_features);
 
 CLASS_ID_TYPE classify(int k, BestPoint *best_points, int num_classes);
 
-CLASS_ID_TYPE classifyinstance(Point new_point, int k, BestPoint *best_points, 
+CLASS_ID_TYPE classifyinstance(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, 
+						int k, BestPoint *best_points, 
 						int num_classes, Point *known_points, int num_points,
 						int num_features);
 

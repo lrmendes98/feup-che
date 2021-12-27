@@ -182,15 +182,28 @@ int main(int argc, char **argv) {
 		int fail = 0; // count the number of test instances incorrectly classified
 	#endif
 	
+
+	// converter new_points para SoA known_points e new_points
+	DATA_TYPE new_point_features[NUM_FEATURES];
+	DATA_TYPE* new_points_features[NUM_TESTING_SAMPLES];
+	CLASS_ID_TYPE new_points_classification_id[NUM_TESTING_SAMPLES];
+
+	Points_SoA new_points_soa;
+	for (int i = 0; i < NUM_TESTING_SAMPLES; i++) {
+		new_points_soa.features[i] = new_points[i].features;
+		new_points_soa.classification_id[i] = new_points[i].classification_id;
+	}
+
+
 	// loop over the input instances to classify.
 	// Note that depending on the application this can be strreaming instances,
 	// instances arriving as streaming data, etc.
 	// Here assume that the loop below needs run in serial mode and the 
 	// value of num_new_point is just to test
     for (int i = 0; i < num_new_points; i++) {
-		
-        CLASS_ID_TYPE class = classifyinstance(new_points[i], k, best_points, num_classes, 
-										known_points, num_points, num_features);
+
+        CLASS_ID_TYPE class = classifyinstance(new_points_soa.features[i], new_points_soa.classification_id[i], 
+										k, best_points, num_classes, known_points, num_points, num_features);
 		//if(i==0) show_point(new_points[i],num_features);
 		
 		#if ACCURACY == 1 && READ != 3

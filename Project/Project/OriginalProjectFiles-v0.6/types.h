@@ -5,6 +5,11 @@
 #include "params.h"
 
 typedef struct {
+    DATA_TYPE* features[NUM_TESTING_SAMPLES];
+	CLASS_ID_TYPE classification_id[NUM_TESTING_SAMPLES];
+} Points_SoA;
+
+typedef struct {
     DATA_TYPE features[NUM_FEATURES];
     CLASS_ID_TYPE classification_id;
 } Point;

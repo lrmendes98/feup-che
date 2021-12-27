@@ -63,7 +63,7 @@ void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, BestPoint *best_poin
 * Main kNN function.
 * It calculates the distances and calculates the nearest k points.
 */
-void knn(Point new_point, Point *known_points, int num_points, 
+void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, Point *known_points, int num_points, 
 		BestPoint *best_points, int k,  int num_features) {
 
     // calculate the Euclidean distance between the Point to classify and each one in the model
@@ -73,7 +73,7 @@ void knn(Point new_point, Point *known_points, int num_points,
 
         // calculate the Euclidean distance
         for (int j = 0; j < num_features; j++) {
-            DATA_TYPE diff = (DATA_TYPE) new_point.features[j] - (DATA_TYPE) known_points[i].features[j];
+            DATA_TYPE diff = (DATA_TYPE) new_point_features[j] - (DATA_TYPE) known_points[i].features[j];
             distance += diff * diff;
         }
         distance = sqrt(distance);
@@ -128,15 +128,16 @@ CLASS_ID_TYPE classify(int k, BestPoint *best_points, int num_classes) {
 * Classify a given Point (instance).
 * It returns the classified class ID.
 */ 
-CLASS_ID_TYPE classifyinstance(Point new_point, int k, BestPoint *best_points, 
-						int num_classes, Point *known_points, int num_points, int num_features) {
+CLASS_ID_TYPE classifyinstance(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, 
+                        int k, BestPoint *best_points, int num_classes, 
+                        Point *known_points, int num_points, int num_features) {
 
 	// initialize the data structure with the best points
 	// this must be done for every new instance to classify
     initialize_best(best_points, k, num_features);
 
     // classify the Point based on the K nearest points
-    knn(new_point, known_points, num_points, best_points, k, num_features);
+    knn(new_point_features, new_point_classification_id, known_points, num_points, best_points, k, num_features);
     
 	// invoke and return the classification. the classify function could be part of
 	// the knn function
