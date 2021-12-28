@@ -184,15 +184,18 @@ int main(int argc, char **argv) {
 	
 
 	// converter new_points para SoA known_points e new_points
-	DATA_TYPE new_point_features[NUM_FEATURES];
-	DATA_TYPE* new_points_features[NUM_TESTING_SAMPLES];
-	CLASS_ID_TYPE new_points_classification_id[NUM_TESTING_SAMPLES];
+	Known_Points_SoA known_points_soa;
+	for (int i = 0; i < NUM_TRAINING_SAMPLES; i++) {
+		known_points_soa.features[i] = known_points[i].features;
+		known_points_soa.classification_id[i] = known_points[i].classification_id;
+	}
 
 	Points_SoA new_points_soa;
 	for (int i = 0; i < NUM_TESTING_SAMPLES; i++) {
 		new_points_soa.features[i] = new_points[i].features;
 		new_points_soa.classification_id[i] = new_points[i].classification_id;
 	}
+
 
 
 	// loop over the input instances to classify.
@@ -203,7 +206,7 @@ int main(int argc, char **argv) {
     for (int i = 0; i < num_new_points; i++) {
 
         CLASS_ID_TYPE class = classifyinstance(new_points_soa.features[i], new_points_soa.classification_id[i], 
-										k, best_points, num_classes, known_points, num_points, num_features);
+										k, best_points, num_classes, known_points, &known_points_soa, num_points, num_features);
 		//if(i==0) show_point(new_points[i],num_features);
 		
 		#if ACCURACY == 1 && READ != 3

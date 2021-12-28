@@ -63,8 +63,12 @@ void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, BestPoint *best_poin
 * Main kNN function.
 * It calculates the distances and calculates the nearest k points.
 */
-void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, Point *known_points, int num_points, 
+void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, Point *known_points, Known_Points_SoA *known_points_soa, int num_points, 
 		BestPoint *best_points, int k,  int num_features) {
+
+    // Os números não correspondem
+    printf("%f ", (DATA_TYPE) known_points[0].features[3]);
+    printf("%f ", (DATA_TYPE) *known_points_soa[0].features[3]);
 
     // calculate the Euclidean distance between the Point to classify and each one in the model
     // and update the k best points if needed
@@ -130,14 +134,14 @@ CLASS_ID_TYPE classify(int k, BestPoint *best_points, int num_classes) {
 */ 
 CLASS_ID_TYPE classifyinstance(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, 
                         int k, BestPoint *best_points, int num_classes, 
-                        Point *known_points, int num_points, int num_features) {
+                        Point *known_points, Known_Points_SoA *known_points_soa, int num_points, int num_features) {
 
 	// initialize the data structure with the best points
 	// this must be done for every new instance to classify
     initialize_best(best_points, k, num_features);
 
     // classify the Point based on the K nearest points
-    knn(new_point_features, new_point_classification_id, known_points, num_points, best_points, k, num_features);
+    knn(new_point_features, new_point_classification_id, known_points, known_points_soa, num_points, best_points, k, num_features);
     
 	// invoke and return the classification. the classify function could be part of
 	// the knn function

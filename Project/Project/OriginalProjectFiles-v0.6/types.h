@@ -10,6 +10,11 @@ typedef struct {
 } Points_SoA;
 
 typedef struct {
+    DATA_TYPE* features[NUM_TRAINING_SAMPLES];
+	CLASS_ID_TYPE classification_id[NUM_TRAINING_SAMPLES];
+} Known_Points_SoA;
+
+typedef struct {
     DATA_TYPE features[NUM_FEATURES];
     CLASS_ID_TYPE classification_id;
 } Point;
