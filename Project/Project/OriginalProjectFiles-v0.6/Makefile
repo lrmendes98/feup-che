@@ -14,7 +14,7 @@ endif
 CC = gcc
 
 CFLAGS = -pg -fprofile-arcs -ftest-coverage -Wall -Wextra -fmax-errors=10 -lm \
-	-Ofast -fopenmp
+	-O3
 CSTD = --std=gnu99
 KNN_FLAGS =
 

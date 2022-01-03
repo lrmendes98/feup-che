@@ -11,9 +11,9 @@
 
 #define NUM_CLASSES 6
 
-#define K 20 //20 // 3 or 20 for READ = 1 (some authors consider K=sqrt(NUM_TRAINING_INSTANCES) = 65
+#define K 3 //20 // 3 or 20 for READ = 1 (some authors consider K=sqrt(NUM_TRAINING_INSTANCES) = 65
 
-#define DT 1 // 1: double; 2: float; 3: not used for know
+#define DT 2 // 1: double; 2: float; 3: not used for know
 
 #if DT == 1	//double
 	#define DATA_TYPE double
