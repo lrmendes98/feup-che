@@ -79,13 +79,13 @@ void knn(Point new_point, Point *known_points, int num_points,
         DATA_TYPE distance = (DATA_TYPE) 0.0;
 
         // calculate the Euclidean distance
-        for (int j = 0; j < 20; j++) {
+        /*for (int j = 0; j < 20; j++) {
             DATA_TYPE diff = (DATA_TYPE) new_point.features[j] - (DATA_TYPE) known_points[i].features[j];
             distance += diff * diff;
            // printf("\nintermediate distance: %f", distance);
         }
-        if (distance > best_points[2].distance) continue;
-        for (int j = 20; j < num_features; j++) {
+        if (distance > best_points[2].distance) continue;*/
+        for (int j = 0; j < num_features; j++) {
             DATA_TYPE diff = (DATA_TYPE) new_point.features[j] - (DATA_TYPE) known_points[i].features[j];
             distance += diff * diff;
            // printf("\nintermediate distance: %f", distance);
