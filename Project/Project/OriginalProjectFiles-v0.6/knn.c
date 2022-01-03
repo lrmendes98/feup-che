@@ -24,9 +24,9 @@
 /*
 * Initialize the data structure to store the k best (nearest) points.
 */
-void initialize_best(BestPoint *best_points, int k,  int num_features) {
+void initialize_best(BestPoint *best_points) {
 
-    for (int i = 0; i < k; i++) {
+    for (int i = 0; i < 3; i++) {
         BestPoint *bp = &(best_points[i]);
         bp->distance = MAX_FP_VAL;
 		//printf("initialize distance %e\n", bp->distance);
@@ -70,7 +70,7 @@ void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, BestPoint *best_poin
 * It calculates the distances and calculates the nearest k points.
 */
 void knn(Point new_point, Point *known_points, int num_points, 
-		BestPoint *best_points, int k,  int num_features) {
+		BestPoint *best_points, int num_features) {
 
     // calculate the Euclidean distance between the Point to classify and each one in the model
     // and update the k best points if needed
@@ -84,18 +84,15 @@ void knn(Point new_point, Point *known_points, int num_points,
         }
         //distance = sqrtf(distance);
 
-        update_best(distance, known_points[i].classification_id, best_points, k);
+        update_best(distance, known_points[i].classification_id, best_points);
     }
 }
 
 /*
 *	Classify using the k nearest neighbors identified by the knn
 *	function. The classification uses majority voting.
-*
-*	Note: it assumes that classes are identified from 0 to 
-*	num_classes - 1.
 */
-CLASS_ID_TYPE classify(int k, BestPoint *best_points, int num_classes) {
+CLASS_ID_TYPE classify(BestPoint *best_points) {
 
     if (best_points[1].classification_id == best_points[2].classification_id) return best_points[1].classification_id;
     else return best_points[0].classification_id;
@@ -107,20 +104,20 @@ CLASS_ID_TYPE classify(int k, BestPoint *best_points, int num_classes) {
 * Classify a given Point (instance).
 * It returns the classified class ID.
 */ 
-CLASS_ID_TYPE classifyinstance(Point new_point, int k, BestPoint *best_points, 
-						int num_classes, Point *known_points, int num_points, int num_features) {
+CLASS_ID_TYPE classifyinstance(Point new_point, BestPoint *best_points, 
+						 Point *known_points, int num_points, int num_features) {
 
     // printf("Number of features: %d", num_features);
 	// initialize the data structure with the best points
 	// this must be done for every new instance to classify
-    initialize_best(best_points, k, num_features);
+    initialize_best(best_points);
 
     // classify the Point based on the K nearest points
-    knn(new_point, known_points, num_points, best_points, k, num_features);
+    knn(new_point, known_points, num_points, best_points, num_features);
     
 	// invoke and return the classification. the classify function could be part of
 	// the knn function
-	CLASS_ID_TYPE classID = classify(k, best_points, num_classes);
+	CLASS_ID_TYPE classID = classify(best_points);
 	
 	return classID;
 }

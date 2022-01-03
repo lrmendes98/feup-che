@@ -189,7 +189,7 @@ int main(int argc, char **argv) {
 	// value of num_new_point is just to test
     for (int i = 0; i < num_new_points; i++) {
 		
-        CLASS_ID_TYPE class = classifyinstance(new_points[i], k, best_points, num_classes, 
+        CLASS_ID_TYPE class = classifyinstance(new_points[i], best_points,
 										known_points, num_points, num_features);
 		//if(i==0) show_point(new_points[i],num_features);
 		

@@ -18,19 +18,18 @@
 #include "params.h"
 #include "types.h"
 
-void initialize_best(BestPoint *best_points, int k,  int num_features);
+void initialize_best(BestPoint *best_points);
 
 void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, 
-				BestPoint *best_points, int k);
+				BestPoint *best_points);
 
 
 void knn(Point new_point, Point *known_points, int num_points, BestPoint *best_points, 
-		int k,  int num_features);
+		 int num_features);
 
-CLASS_ID_TYPE classify(int k, BestPoint *best_points, int num_classes);
+CLASS_ID_TYPE classify(BestPoint *best_points);
 
-CLASS_ID_TYPE classifyinstance(Point new_point, int k, BestPoint *best_points, 
-						int num_classes, Point *known_points, int num_points,
-						int num_features);
+CLASS_ID_TYPE classifyinstance(Point new_point, BestPoint *best_points, 
+						Point *known_points, int num_points, int num_features);
 
 #endif
