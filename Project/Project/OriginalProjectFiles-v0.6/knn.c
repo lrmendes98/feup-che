@@ -41,6 +41,7 @@ void initialize_best(BestPoint *best_points) {
 void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, BestPoint *best_points) {
 
    if (distance < (DATA_TYPE)best_points[2].distance) {
+        //printf("\ndistance: %f", (DATA_TYPE)best_points[2].distance);
         if (distance < best_points[1].distance) {
             if (distance < best_points[0].distance) {
                 best_points[2].distance = best_points[1].distance;
@@ -78,9 +79,16 @@ void knn(Point new_point, Point *known_points, int num_points,
         DATA_TYPE distance = (DATA_TYPE) 0.0;
 
         // calculate the Euclidean distance
-        for (int j = 0; j < num_features; j++) {
+        for (int j = 0; j < 20; j++) {
             DATA_TYPE diff = (DATA_TYPE) new_point.features[j] - (DATA_TYPE) known_points[i].features[j];
             distance += diff * diff;
+           // printf("\nintermediate distance: %f", distance);
+        }
+        if (distance > best_points[2].distance) continue;
+        for (int j = 20; j < num_features; j++) {
+            DATA_TYPE diff = (DATA_TYPE) new_point.features[j] - (DATA_TYPE) known_points[i].features[j];
+            distance += diff * diff;
+           // printf("\nintermediate distance: %f", distance);
         }
         //distance = sqrtf(distance);
 
