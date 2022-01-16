@@ -189,8 +189,20 @@ int main(int argc, char **argv) {
 	// value of num_new_point is just to test
     for (int i = 0; i < num_new_points; i++) {
 		
-        CLASS_ID_TYPE class = classifyinstance(new_points[i], k, best_points, num_classes, 
-										known_points, num_points, num_features);
+        // CLASS_ID_TYPE class = classifyinstance(new_points[i], k, best_points, num_classes, 
+		// 								known_points, num_points, num_features);
+
+		// initialize the data structure with the best points
+		// this must be done for every new instance to classify
+		initialize_best(best_points, k, num_features);
+
+		// classify the Point based on the K nearest points
+		knn(new_points[i], known_points, num_points, best_points, k, num_features);
+		
+		// invoke and return the classification. the classify function could be part of
+		// the knn function
+		CLASS_ID_TYPE class = classify(k, best_points, num_classes);
+
 		//if(i==0) show_point(new_points[i],num_features);
 		
 		#if ACCURACY == 1 && READ != 3
