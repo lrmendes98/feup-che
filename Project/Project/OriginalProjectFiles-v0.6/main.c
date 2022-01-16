@@ -200,7 +200,7 @@ int main(int argc, char **argv) {
 		new_points[i].classification_id = class;
 		//printf("%d,%d\n",new_points[i].classification_id, class);
 		//printf("%d,",class);
-		printf("class id: %d\n",class);
+		// printf("class id: %d\n",class);
     }
 	
 
