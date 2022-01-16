@@ -194,7 +194,13 @@ int main(int argc, char **argv) {
 
 		// initialize the data structure with the best points
 		// this must be done for every new instance to classify
-		initialize_best(best_points, k, num_features);
+		// initialize_best(best_points, k, num_features);
+		for (int i = 0; i < k; i++) {
+			BestPoint *bp = &(best_points[i]);
+			bp->distance = MAX_FP_VAL;
+			//printf("initialize distance %e\n", bp->distance);
+			bp->classification_id = (CLASS_ID_TYPE) -1; // unknown
+		}
 
 		// classify the Point based on the K nearest points
 		knn(new_points[i], known_points, num_points, best_points, k, num_features);
