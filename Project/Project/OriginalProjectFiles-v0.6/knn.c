@@ -12,6 +12,7 @@
 *	SPeCS, FEUP.DEI, University of Porto, Portugal
 */
 
+#include "types.h"
 #include <math.h>
 
 #ifndef NDEBUG
@@ -24,13 +25,12 @@
 /*
 * Initialize the data structure to store the k best (nearest) points.
 */
-void initialize_best(BestPoint *best_points, int k,  int num_features) {
-
+void initialize_best(BestPoint_SoA *best_points, int k,  int num_features) {
     for (int i = 0; i < k; i++) {
-        BestPoint *bp = &(best_points[i]);
-        bp->distance = MAX_FP_VAL;
+        // BestPoint *bp = &(best_points[i]);
+        best_points->distance[i] = MAX_FP_VAL;
 		//printf("initialize distance %e\n", bp->distance);
-        bp->classification_id = (CLASS_ID_TYPE) -1; // unknown
+        best_points->classification_id[i] = (CLASS_ID_TYPE) -1; // unknown
     }
 }
 
@@ -38,23 +38,23 @@ void initialize_best(BestPoint *best_points, int k,  int num_features) {
 * Keep the data structure with the k nearest points updated.
 * It receives a new Point and updates the k nearest accordingly.
 */
-void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, BestPoint *best_points, int k) {
+void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, BestPoint_SoA *best_points, int k) {
 
     DATA_TYPE max = (DATA_TYPE) 0.0;
     int index = 0;
 
     //find the worst Point in the best_points, i.e., the point with the longest distance
     for (int i = 0; i < k; i++) {
-        if (best_points[i].distance > max) {
-            max = best_points[i].distance;
+        if (best_points->distance[i] > max) {
+            max = best_points->distance[i];
             index = i;
         }
     }
     // if the Point is better (shorter distance) than the worst one (longest distance) 
 	// in the best_points update best_points substituting the worst one
     if (distance < max) {
-		best_points[index].classification_id = classID;
-		best_points[index].distance = distance;
+		best_points->classification_id[index] = classID;
+		best_points->distance[index] = distance;
 		//printf("update best: %d\n",classID);
     }
 }
@@ -64,7 +64,7 @@ void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, BestPoint *best_poin
 * It calculates the distances and calculates the nearest k points.
 */
 void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, Point *known_points, Known_Points_SoA *known_points_soa, int num_points, 
-		BestPoint *best_points, int k,  int num_features) {
+		BestPoint_SoA *best_points, int k,  int num_features) {
 
     // Os números não correspondem
     // printf("%f ", (DATA_TYPE) known_points[0].features[3]);
@@ -93,7 +93,7 @@ void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_i
 *	Note: it assumes that classes are identified from 0 to 
 *	num_classes - 1.
 */
-CLASS_ID_TYPE classify(int k, BestPoint *best_points, int num_classes) {
+CLASS_ID_TYPE classify(int k, BestPoint_SoA *best_points, int num_classes) {
 
     unsigned CLASS_ID_TYPE histogram[num_classes];  // maximum is the value of k
     for (int i = 0; i < num_classes; i++) {
@@ -105,14 +105,14 @@ CLASS_ID_TYPE classify(int k, BestPoint *best_points, int num_classes) {
 	// build histogram
     for (int i = 0; i < k; i++) {
 
-        BestPoint p = best_points[i];
+        int class_id = best_points->classification_id[i];
         //if (best_points[i].distance < min_distance) {
         //    min_distance = best_points[i].distance;
         //}
 
-		assert(p.classification_id != -1);
+		assert(class_id != -1);
 		
-        histogram[( int) p.classification_id] += 1;
+        histogram[class_id] += 1;
     }
 
     unsigned CLASS_ID_TYPE max = 0; // maximum is the highest class id +1
@@ -133,7 +133,7 @@ CLASS_ID_TYPE classify(int k, BestPoint *best_points, int num_classes) {
 * It returns the classified class ID.
 */ 
 CLASS_ID_TYPE classifyinstance(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, 
-                        int k, BestPoint *best_points, int num_classes, 
+                        int k, BestPoint_SoA *best_points, int num_classes, 
                         Point *known_points, Known_Points_SoA *known_points_soa, int num_points, int num_features) {
 
 	// initialize the data structure with the best points

@@ -176,7 +176,8 @@ int main(int argc, char **argv) {
 		timer_start(timer);
 	#endif
 
-	BestPoint best_points[k]; // Array with the k nearest points to the Point to classify
+	// BestPoint best_points[k]; // Array with the k nearest points to the Point to classify
+	BestPoint_SoA best_points;
 
 	#if ACCURACY == 1 && READ != 3
 		int fail = 0; // count the number of test instances incorrectly classified
@@ -206,7 +207,7 @@ int main(int argc, char **argv) {
     for (int i = 0; i < num_new_points; i++) {
 
         CLASS_ID_TYPE class = classifyinstance(new_points_soa.features[i], new_points_soa.classification_id[i], 
-										k, best_points, num_classes, known_points, &known_points_soa, num_points, num_features);
+										k, &best_points, num_classes, known_points, &known_points_soa, num_points, num_features);
 		//if(i==0) show_point(new_points[i],num_features);
 		
 		#if ACCURACY == 1 && READ != 3

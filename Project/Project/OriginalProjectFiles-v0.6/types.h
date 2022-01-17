@@ -24,4 +24,9 @@ typedef struct {
     DATA_TYPE distance;
 } BestPoint;
 
+typedef struct {
+    CLASS_ID_TYPE classification_id[K];
+    DATA_TYPE distance[K];
+} BestPoint_SoA;
+
 #endif //KNN_TYPES_H
