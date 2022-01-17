@@ -93,6 +93,8 @@
 #include "utils.h"
 #include "io.h"
 #include "knn.h"
+#include <assert.h>
+
 
 #if TIMMING == 1
 	#include "timer.h"
@@ -205,11 +207,57 @@ int main(int argc, char **argv) {
 	// value of num_new_point is just to test
     for (int i = 0; i < num_new_points; i++) {
 
-        CLASS_ID_TYPE class = classifyinstance(new_points_soa.features[i], 
-								new_points_soa.classification_id[i], k, &best_points, 
-								num_classes, &known_points_soa, num_points, 
-								num_features);
-		//if(i==0) show_point(new_points[i],num_features);
+        // CLASS_ID_TYPE class = classifyinstance(new_points_soa.features[i], 
+		// 						new_points_soa.classification_id[i], k, &best_points, 
+		// 						num_classes, &known_points_soa, num_points, 
+		// 						num_features);
+		
+		// initialize_best(&best_points, k, num_features);
+		for (int i = 0; i < k; i++) {
+			// BestPoint *bp = &(best_points[i]);
+			best_points.distance[i] = MAX_FP_VAL;
+			//printf("initialize distance %e\n", bp->distance);
+			best_points.classification_id[i] = (CLASS_ID_TYPE) -1; // unknown
+		}
+
+		// classify the Point based on the K nearest points
+		// TODO: inline this
+		knn(new_points_soa.features[i], new_points_soa.classification_id[i], 
+			&known_points_soa, num_points, &best_points, k, num_features);
+		
+		// invoke and return the classification. the classify function could be part of
+		// the knn function
+		// CLASS_ID_TYPE class = classify(k, &best_points, num_classes);
+
+		unsigned CLASS_ID_TYPE histogram[num_classes];  // maximum is the value of k
+		for (int i = 0; i < num_classes; i++) {
+			histogram[i] = 0;
+		}
+
+		//DATA_TYPE min_distance = MAX_FP_VAL;
+
+		// build histogram
+		for (int i = 0; i < k; i++) {
+
+			int class_id = best_points.classification_id[i];
+			//if (best_points[i].distance < min_distance) {
+			//    min_distance = best_points[i].distance;
+			//}
+
+			assert(class_id != -1);
+			
+			histogram[class_id] += 1;
+		}
+
+		unsigned CLASS_ID_TYPE max = 0; // maximum is the highest class id +1
+		CLASS_ID_TYPE class = 0;
+		for (int i = 0; i < num_classes; i++) {
+
+			if (histogram[i] > max) {
+				max = histogram[i];
+				class = (CLASS_ID_TYPE) i;
+			}
+		}
 		
 		#if ACCURACY == 1 && READ != 3
 			if(new_points[i].classification_id != class) fail++;
