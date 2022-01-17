@@ -67,8 +67,8 @@ void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_i
 		BestPoint *best_points, int k,  int num_features) {
 
     // Os números não correspondem
-    printf("%f ", (DATA_TYPE) known_points[0].features[3]);
-    printf("%f ", (DATA_TYPE) *known_points_soa[0].features[3]);
+    // printf("%f ", (DATA_TYPE) known_points[0].features[3]);
+    // printf("%f ", (DATA_TYPE) *known_points_soa[0].features[3]);
 
     // calculate the Euclidean distance between the Point to classify and each one in the model
     // and update the k best points if needed
