@@ -86,7 +86,8 @@
 #endif
 
 #include <stdio.h>
-#include <omp.h>
+#include <assert.h>
+
 
 #include "params.h"
 #include "types.h"
@@ -207,7 +208,36 @@ int main(int argc, char **argv) {
 		
 		// invoke and return the classification. the classify function could be part of
 		// the knn function
-		CLASS_ID_TYPE class = classify(k, best_points, num_classes);
+		// CLASS_ID_TYPE class = classify(k, best_points, num_classes);
+		unsigned CLASS_ID_TYPE histogram[num_classes];  // maximum is the value of k
+		for (int i = 0; i < num_classes; i++) {
+			histogram[i] = 0;
+		}
+
+		//DATA_TYPE min_distance = MAX_FP_VAL;
+
+		// build histogram
+		for (int i = 0; i < k; i++) {
+
+			BestPoint p = best_points[i];
+			//if (best_points[i].distance < min_distance) {
+			//    min_distance = best_points[i].distance;
+			//}
+
+			assert(p.classification_id != -1);
+			
+			histogram[( int) p.classification_id] += 1;
+		}
+
+		unsigned CLASS_ID_TYPE max = 0; // maximum is the highest class id +1
+		CLASS_ID_TYPE class = 0;
+		for (int i = 0; i < num_classes; i++) {
+
+			if (histogram[i] > max) {
+				max = histogram[i];
+				class = (CLASS_ID_TYPE) i;
+			}
+		}
 
 		//if(i==0) show_point(new_points[i],num_features);
 		
