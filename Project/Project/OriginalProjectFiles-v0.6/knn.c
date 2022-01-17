@@ -38,7 +38,8 @@ void initialize_best(BestPoint_SoA *best_points, int k, int num_features) {
 * Keep the data structure with the k nearest points updated.
 * It receives a new Point and updates the k nearest accordingly.
 */
-void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, BestPoint_SoA *best_points, int k) {
+void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, 
+            BestPoint_SoA *restrict best_points, int k) {
 
     DATA_TYPE max = (DATA_TYPE) 0.0;
     int index = 0;
@@ -64,8 +65,8 @@ void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, BestPoint_SoA *best_
 * It calculates the distances and calculates the nearest k points.
 */
 void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, 
-            Known_Points_SoA *known_points_soa, int num_points, 
-		    BestPoint_SoA *best_points, int k, int num_features) {
+            Known_Points_SoA *restrict known_points_soa, int num_points, 
+		    BestPoint_SoA *restrict best_points, int k, int num_features) {
 
     // calculate the Euclidean distance between the Point to classify and each one in the model
     // and update the k best points if needed
