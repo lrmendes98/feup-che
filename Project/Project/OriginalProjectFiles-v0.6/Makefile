@@ -14,7 +14,7 @@ endif
 CC = gcc
 
 CFLAGS = -Wall -Wextra -fmax-errors=10 -lm \
-	-O3
+
 CSTD = --std=gnu99
 KNN_FLAGS =
 
