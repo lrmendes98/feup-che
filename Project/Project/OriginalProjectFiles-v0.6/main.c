@@ -207,7 +207,7 @@ int main(int argc, char **argv) {
 
         CLASS_ID_TYPE class = classifyinstance(new_points_soa.features[i], 
 								new_points_soa.classification_id[i], k, &best_points, 
-								num_classes, known_points, &known_points_soa, num_points, 
+								num_classes, &known_points_soa, num_points, 
 								num_features);
 		//if(i==0) show_point(new_points[i],num_features);
 		
