@@ -198,7 +198,6 @@ int main(int argc, char **argv) {
 	}
 
 
-
 	// loop over the input instances to classify.
 	// Note that depending on the application this can be strreaming instances,
 	// instances arriving as streaming data, etc.
@@ -206,8 +205,10 @@ int main(int argc, char **argv) {
 	// value of num_new_point is just to test
     for (int i = 0; i < num_new_points; i++) {
 
-        CLASS_ID_TYPE class = classifyinstance(new_points_soa.features[i], new_points_soa.classification_id[i], 
-										k, &best_points, num_classes, known_points, &known_points_soa, num_points, num_features);
+        CLASS_ID_TYPE class = classifyinstance(new_points_soa.features[i], 
+								new_points_soa.classification_id[i], k, &best_points, 
+								num_classes, known_points, &known_points_soa, num_points, 
+								num_features);
 		//if(i==0) show_point(new_points[i],num_features);
 		
 		#if ACCURACY == 1 && READ != 3

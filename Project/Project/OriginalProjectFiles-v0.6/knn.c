@@ -63,8 +63,9 @@ void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, BestPoint_SoA *best_
 * Main kNN function.
 * It calculates the distances and calculates the nearest k points.
 */
-void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, Point *known_points, Known_Points_SoA *known_points_soa, int num_points, 
-		BestPoint_SoA *best_points, int k,  int num_features) {
+void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, 
+            Point *known_points, Known_Points_SoA *known_points_soa, int num_points, 
+		    BestPoint_SoA *best_points, int k,  int num_features) {
 
     // Os números não correspondem
     // printf("%f ", (DATA_TYPE) known_points[0].features[3]);
