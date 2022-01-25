@@ -68,16 +68,23 @@ void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_i
             Known_Points_SoA *restrict known_points_soa, int num_points, 
 		    BestPoint_SoA *restrict best_points, int k, int num_features) {
 
+    DATA_TYPE distance = (DATA_TYPE) 0.0;
+    DATA_TYPE diff;
+    int j;
+    
+    #pragma omp parallel for \
+        private(j,diff) reduction(+:distance)
+
     // calculate the Euclidean distance between the Point to classify and each one in the model
     // and update the k best points if needed
     for (int i = 0; i < num_points; i++) {
-        DATA_TYPE distance = (DATA_TYPE) 0.0;
+        distance = (DATA_TYPE) 0.0;
         DATA_TYPE* known_point_features = known_points_soa->features[i];
         CLASS_ID_TYPE known_point_classification_id = known_points_soa->classification_id[i];
 
         // calculate the Euclidean distance
-        for (int j = 0; j < num_features; j++) {
-            DATA_TYPE diff = (DATA_TYPE) new_point_features[j] - 
+        for (j = 0; j < num_features; j++) {
+            diff = (DATA_TYPE) new_point_features[j] - 
                                 (DATA_TYPE) known_point_features[j];
             distance += diff * diff;
         }

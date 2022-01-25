@@ -14,6 +14,7 @@ endif
 CC = gcc
 
 CFLAGS = -Wall -Wextra -fmax-errors=10 -lm \
+	-fopenmp
 	 
 	 
 CSTD = --std=gnu99
