@@ -1,6 +1,0 @@
-read2-data
-*.o
-*.gcda
-*.gcno
-knn
-*.out
