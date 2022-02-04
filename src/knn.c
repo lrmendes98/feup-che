@@ -81,8 +81,8 @@ void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_i
 
         // calculate the Euclidean distance
         for (j = 0; j < NUM_FEATURES; j++) {
-            diff = (DATA_TYPE) new_point_features[j+i] -
-                                (DATA_TYPE) known_point_features[j+i];
+            diff = (DATA_TYPE) new_point_features[j+i*NUM_FEATURES] -
+                                (DATA_TYPE) known_point_features[j+i*NUM_FEATURES];
             distance += diff * diff;
         }
 
