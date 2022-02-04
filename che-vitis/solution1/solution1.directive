@@ -10,6 +10,11 @@
                 <option name="name" value="classifyinstance"/>
             </pragma>
         </directive>
+        <directive functionName="classifyinstance" label="" functionLabel="">
+            <pragma name="TOP">
+                <option name="name" value="classifyinstance"/>
+            </pragma>
+        </directive>
     </sourceFile>
 </AutoPilot:ProjectResources>
 

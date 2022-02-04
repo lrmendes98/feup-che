@@ -32,8 +32,8 @@ class AESL_RUNTIME_BC {
     fstream file_token;
     string mName;
 };
-extern "C" char classifyinstance(volatile void *, char, int, long long*, int, long long*, int, int);
-extern "C" char apatb_classifyinstance_hw(volatile void * __xlx_apatb_param_new_point_features, char __xlx_apatb_param_new_point_classification_id, int __xlx_apatb_param_k, volatile void * __xlx_apatb_param_best_points, int __xlx_apatb_param_num_classes, volatile void * __xlx_apatb_param_known_points_soa, int __xlx_apatb_param_num_points, int __xlx_apatb_param_num_features) {
+extern "C" char classifyinstance(volatile void *, char, long long*, int, long long*, int, int);
+extern "C" char apatb_classifyinstance_hw(volatile void * __xlx_apatb_param_new_point_features, char __xlx_apatb_param_new_point_classification_id, volatile void * __xlx_apatb_param_best_points, int __xlx_apatb_param_num_classes, volatile void * __xlx_apatb_param_known_points_soa, int __xlx_apatb_param_num_points, int __xlx_apatb_param_num_features) {
   // Collect __xlx_best_points__tmp_vec
   vector<sc_bv<64> >__xlx_best_points__tmp_vec;
   for (int j = 0, e = 23; j != e; ++j) {
@@ -59,7 +59,7 @@ extern "C" char apatb_classifyinstance_hw(volatile void * __xlx_apatb_param_new_
     __xlx_known_points_soa__input_buffer[i] = __xlx_known_points_soa__tmp_vec[i].range(63, 0).to_uint64();
   }
   // DUT call
-  char ap_return = classifyinstance(__xlx_apatb_param_new_point_features, __xlx_apatb_param_new_point_classification_id, __xlx_apatb_param_k, __xlx_best_points__input_buffer, __xlx_apatb_param_num_classes, __xlx_known_points_soa__input_buffer, __xlx_apatb_param_num_points, __xlx_apatb_param_num_features);
+  char ap_return = classifyinstance(__xlx_apatb_param_new_point_features, __xlx_apatb_param_new_point_classification_id, __xlx_best_points__input_buffer, __xlx_apatb_param_num_classes, __xlx_known_points_soa__input_buffer, __xlx_apatb_param_num_points, __xlx_apatb_param_num_features);
 // print __xlx_apatb_param_best_points
   sc_bv<64>*__xlx_best_points_output_buffer = new sc_bv<64>[__xlx_size_param_best_points];
   for (int i = 0; i < __xlx_size_param_best_points; ++i) {

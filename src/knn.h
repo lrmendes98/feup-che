@@ -31,7 +31,7 @@ void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_i
 CLASS_ID_TYPE classify(int k, BestPoint_SoA *best_points, int num_classes);
 
 CLASS_ID_TYPE classifyinstance(DATA_TYPE* new_point_features, 
-						CLASS_ID_TYPE new_point_classification_id, int k, 
+						CLASS_ID_TYPE new_point_classification_id,
 						BestPoint_SoA *best_points, int num_classes, 
 						Known_Points_SoA *known_points_soa, int num_points, 
 						int num_features);

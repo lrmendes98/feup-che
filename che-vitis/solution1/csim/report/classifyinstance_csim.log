@@ -1,0 +1,35 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling(apcc) ../../../../src/main.c in debug mode
+INFO: [HLS 200-10] Running 'C:/Xilinx/Vitis_HLS/2020.2/bin/unwrapped/win64.o/apcc.exe'
+INFO: [HLS 200-10] For user 'up201700488' on host 'feup-i221d07' (Windows NT_amd64 version 6.2) on Fri Feb 04 15:19:53 +0000 2022
+INFO: [HLS 200-10] In directory 'C:/Users/up201700488/feup-che/che-vitis/solution1/csim/build'
+../../../../src/main.c:194:38: error: use of undeclared identifier 'i'
+                known_points_soa.classification_id[i] = known_points[i].classification_id;
+                                                   ^
+../../../../src/main.c:194:56: error: use of undeclared identifier 'i'
+                known_points_soa.classification_id[i] = known_points[i].classification_id;
+                                                                     ^
+../../../../src/main.c:202:36: error: use of undeclared identifier 'i'
+                new_points_soa.classification_id[i] = new_points[i].classification_id;
+                                                 ^
+../../../../src/main.c:202:52: error: use of undeclared identifier 'i'
+                new_points_soa.classification_id[i] = new_points[i].classification_id;
+                                                                 ^
+4 errors generated.
+ERROR: [APCC 202-10] clang compile failed: child process exited abnormally
+ERROR: [APCC 202-1] ProcessSources failed
+INFO: [APCC 202-3] Tmp directory is C:/tmp/apcc_db_up201700488/128363362095138
+ERROR: [APCC 202-1] APCC failed.
+   Compiling(apcc) ../../../../src/knn.c in debug mode
+INFO: [HLS 200-10] Running 'C:/Xilinx/Vitis_HLS/2020.2/bin/unwrapped/win64.o/apcc.exe'
+INFO: [HLS 200-10] For user 'up201700488' on host 'feup-i221d07' (Windows NT_amd64 version 6.2) on Fri Feb 04 15:19:58 +0000 2022
+INFO: [HLS 200-10] In directory 'C:/Users/up201700488/feup-che/che-vitis/solution1/csim/build'
+INFO: [APCC 202-3] Tmp directory is C:/tmp/apcc_db_up201700488/61003367005440
+INFO: [APCC 202-1] APCC is done.
+   Generating csim.exe
+Makefile.rules:392: recipe for target 'csim.exe' failed
+g++.exe: error: obj/main.o: No such file or directory
+make: *** [csim.exe] Error 1
+ERR: [SIM 100] 'csim_design' failed: compilation error(s).
+INFO: [SIM 3] *************** CSIM finish ***************

@@ -27,69 +27,74 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>knn.c</name>
+			<type>1</type>
+			<location>C:/Users/up201700488/feup-che/src/knn.c</location>
+		</link>
+		<link>
 			<name>source</name>
 			<type>2</type>
-			<location>C:/Users/up201700488/Desktop/che-vitis/.apc/.src</location>
+			<location>C:/Users/up201700488/feup-che/che-vitis/.apc/.src</location>
 		</link>
 		<link>
 			<name>testbench</name>
 			<type>2</type>
-			<location>C:/Users/up201700488/Desktop/che-vitis/.apc/.tb</location>
+			<location>C:/Users/up201700488/feup-che/che-vitis/.apc/.tb</location>
 		</link>
 		<link>
 			<name>solution1/constraints</name>
 			<type>2</type>
-			<location>C:/Users/up201700488/Desktop/che-vitis/solution1/.tcls</location>
+			<location>C:/Users/up201700488/feup-che/che-vitis/solution1/.tcls</location>
 		</link>
 		<link>
 			<name>source/knn.c</name>
 			<type>1</type>
-			<location>C:/Users/up201700488/feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.c</location>
+			<location>C:/Users/up201700488/feup-che/src/knn.c</location>
 		</link>
 		<link>
 			<name>source/knn.h</name>
 			<type>1</type>
-			<location>C:/Users/up201700488/feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.h</location>
+			<location>C:/Users/up201700488/feup-che/src/knn.h</location>
 		</link>
 		<link>
 			<name>source/params.h</name>
 			<type>1</type>
-			<location>C:/Users/up201700488/feup-che/Project/Project/OriginalProjectFiles-v0.6/params.h</location>
+			<location>C:/Users/up201700488/feup-che/src/params.h</location>
 		</link>
 		<link>
 			<name>source/types.h</name>
 			<type>1</type>
-			<location>C:/Users/up201700488/feup-che/Project/Project/OriginalProjectFiles-v0.6/types.h</location>
+			<location>C:/Users/up201700488/feup-che/src/types.h</location>
 		</link>
 		<link>
 			<name>source/utils.c</name>
 			<type>1</type>
-			<location>C:/Users/up201700488/feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.c</location>
+			<location>C:/Users/up201700488/feup-che/src/utils.c</location>
 		</link>
 		<link>
 			<name>source/utils.h</name>
 			<type>1</type>
-			<location>C:/Users/up201700488/feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.h</location>
+			<location>C:/Users/up201700488/feup-che/src/utils.h</location>
 		</link>
 		<link>
 			<name>testbench/main.c</name>
 			<type>1</type>
-			<location>C:/Users/up201700488/feup-che/Project/Project/OriginalProjectFiles-v0.6/main.c</location>
+			<location>C:/Users/up201700488/feup-che/src/main.c</location>
 		</link>
 		<link>
 			<name>solution1/constraints/.xml.directive</name>
 			<type>1</type>
-			<location>C:/Users/up201700488/Desktop/che-vitis/solution1/solution1.directive</location>
+			<location>C:/Users/up201700488/feup-che/che-vitis/solution1/solution1.directive</location>
 		</link>
 		<link>
 			<name>solution1/constraints/directives.tcl</name>
 			<type>1</type>
-			<location>C:/Users/up201700488/Desktop/che-vitis/solution1/directives.tcl</location>
+			<location>C:/Users/up201700488/feup-che/che-vitis/solution1/directives.tcl</location>
 		</link>
 		<link>
 			<name>solution1/constraints/script.tcl</name>
 			<type>1</type>
-			<location>C:/Users/up201700488/Desktop/che-vitis/solution1/script.tcl</location>
+			<location>C:/Users/up201700488/feup-che/che-vitis/solution1/script.tcl</location>
 		</link>
 	</linkedResources>
 </projectDescription>

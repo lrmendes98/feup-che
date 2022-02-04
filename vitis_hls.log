@@ -1,0 +1,134 @@
+INFO: [HLS 200-10] Running 'C:/Xilinx/Vitis_HLS/2020.2/bin/unwrapped/win64.o/vitis_hls.exe'
+INFO: [HLS 200-10] For user 'up201700488' on host 'feup-i221d07' (Windows NT_amd64 version 6.2) on Fri Feb 04 15:23:49 +0000 2022
+INFO: [HLS 200-10] In directory 'C:/Users/up201700488/feup-che'
+Sourcing Tcl script 'C:/Users/up201700488/feup-che/che-vitis/solution1/csynth.tcl'
+INFO: [HLS 200-1510] Running: open_project che-vitis 
+INFO: [HLS 200-10] Opening project 'C:/Users/up201700488/feup-che/che-vitis'.
+INFO: [HLS 200-1510] Running: set_top classifyinstance 
+INFO: [HLS 200-1510] Running: add_files src/knn.c 
+INFO: [HLS 200-10] Adding design file 'src/knn.c' to the project
+INFO: [HLS 200-1510] Running: add_files src/knn.h 
+INFO: [HLS 200-10] Adding design file 'src/knn.h' to the project
+INFO: [HLS 200-1510] Running: add_files src/params.h 
+INFO: [HLS 200-10] Adding design file 'src/params.h' to the project
+INFO: [HLS 200-1510] Running: add_files src/types.h 
+INFO: [HLS 200-10] Adding design file 'src/types.h' to the project
+INFO: [HLS 200-1510] Running: add_files src/utils.c 
+INFO: [HLS 200-10] Adding design file 'src/utils.c' to the project
+INFO: [HLS 200-1510] Running: add_files src/utils.h 
+INFO: [HLS 200-10] Adding design file 'src/utils.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb src/main.c 
+INFO: [HLS 200-10] Adding test bench file 'src/main.c' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vivado 
+INFO: [HLS 200-10] Opening solution 'C:/Users/up201700488/feup-che/che-vitis/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 20ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg484-1 
+INFO: [HLS 200-1510] Running: create_clock -period 20 -name default 
+INFO: [HLS 200-1510] Running: set_directive_top -name classifyinstance classifyinstance 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.158 seconds; current allocated memory: 219.716 MB.
+INFO: [HLS 200-10] Analyzing design file 'src/utils.c' ... 
+INFO: [HLS 200-10] Analyzing design file 'src/knn.c' ... 
+WARNING: [HLS 207-5301] unused parameter 'k': src/knn.c:28:54
+WARNING: [HLS 207-5301] unused parameter 'num_features': src/knn.c:28:61
+WARNING: [HLS 207-5301] unused parameter 'k': src/knn.c:42:46
+WARNING: [HLS 207-5301] unused parameter 'new_point_classification_id': src/knn.c:67:43
+WARNING: [HLS 207-5301] unused parameter 'num_features': src/knn.c:69:47
+WARNING: [HLS 207-5301] unused parameter 'k': src/knn.c:100:19
+WARNING: [HLS 207-5301] unused parameter 'num_classes': src/knn.c:100:54
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 1.284 seconds; current allocated memory: 221.227 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-178] Inlining function 'update_best' into 'knn' (src/knn.c:69:0)
+INFO: [HLS 214-178] Inlining function 'initialize_best' into 'classifyinstance' (src/knn.c:141:0)
+INFO: [HLS 214-178] Inlining function 'knn' into 'classifyinstance' (src/knn.c:141:0)
+INFO: [HLS 214-178] Inlining function 'classify' into 'classifyinstance' (src/knn.c:141:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 5.035 seconds; current allocated memory: 222.706 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.143 seconds; current allocated memory: 222.707 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.29 seconds; current allocated memory: 224.059 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.201 seconds; current allocated memory: 223.301 MB.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_29_1' (src/knn.c:29) in function 'classifyinstance' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_77_1' (src/knn.c:77) in function 'classifyinstance' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_103_1' (src/knn.c:103) in function 'classifyinstance' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_110_2' (src/knn.c:110) in function 'classifyinstance' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_124_3' (src/knn.c:122) in function 'classifyinstance' automatically.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'VITIS_LOOP_77_1' (src/knn.c:77) in function 'classifyinstance' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'VITIS_LOOP_83_2' (src/knn.c:71) in function 'classifyinstance' completely with a factor of 43.
+INFO: [HLS 200-489] Unrolling loop 'VITIS_LOOP_48_1' (src/knn.c:44) in function 'classifyinstance' completely with a factor of 20.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.487 seconds; current allocated memory: 244.755 MB.
+INFO: [HLS 200-472] Inferring partial write operation for 'histogram' (src/knn.c:104:22)
+INFO: [HLS 200-472] Inferring partial write operation for 'histogram' (src/knn.c:119:29)
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.652 seconds; current allocated memory: 241.209 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'classifyinstance' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'classifyinstance' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_29_1'.
+WARNING: [HLS 200-880] The II Violation in module 'classifyinstance' (loop 'VITIS_LOOP_29_1'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('best_points_addr_1_write_ln33', src/knn.c:33) of constant <constant:_ssdm_op_Write.bram.p0i64> on array 'best_points' and 'store' operation ('best_points_addr_write_ln31', src/knn.c:31) of constant <constant:_ssdm_op_Write.bram.i64> on array 'best_points'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-880.html
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 2, Depth = 2, loop 'VITIS_LOOP_29_1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_77_1'.
+WARNING: [HLS 200-880] The II Violation in module 'classifyinstance' (loop 'VITIS_LOOP_77_1'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('best_points_addr_4_write_ln57', src/knn.c:57) of constant <constant:_ssdm_op_Write.bram.p0i64> on array 'best_points' and 'load' operation ('best_points_load_1', src/knn.c:49) on array 'best_points'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'classifyinstance' (loop 'VITIS_LOOP_77_1'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between 'store' operation ('best_points_addr_4_write_ln57', src/knn.c:57) of constant <constant:_ssdm_op_Write.bram.p0i64> on array 'best_points' and 'load' operation ('best_points_load_1', src/knn.c:49) on array 'best_points'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'classifyinstance' (loop 'VITIS_LOOP_77_1'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1) between 'store' operation ('best_points_addr_4_write_ln57', src/knn.c:57) of constant <constant:_ssdm_op_Write.bram.p0i64> on array 'best_points' and 'load' operation ('best_points_load_1', src/knn.c:49) on array 'best_points'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'classifyinstance' (loop 'VITIS_LOOP_77_1'): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 1) between 'store' operation ('best_points_addr_4_write_ln57', src/knn.c:57) of constant <constant:_ssdm_op_Write.bram.p0i64> on array 'best_points' and 'load' operation ('best_points_load_1', src/knn.c:49) on array 'best_points'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'classifyinstance' (loop 'VITIS_LOOP_77_1'): Unable to enforce a carried dependence constraint (II = 19, distance = 1, offset = 1) between 'store' operation ('best_points_addr_4_write_ln57', src/knn.c:57) of constant <constant:_ssdm_op_Write.bram.p0i64> on array 'best_points' and 'load' operation ('best_points_load_1', src/knn.c:49) on array 'best_points'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'classifyinstance' (loop 'VITIS_LOOP_77_1'): Unable to enforce a carried dependence constraint (II = 23, distance = 1, offset = 1) between 'store' operation ('best_points_addr_5_write_ln58', src/knn.c:58) of constant <constant:_ssdm_op_Write.bram.i64> on array 'best_points' and 'load' operation ('best_points_load_1', src/knn.c:49) on array 'best_points'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-880.html
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 24, Depth = 227, loop 'VITIS_LOOP_77_1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_103_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_103_1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_110_2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'VITIS_LOOP_110_2'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_124_3'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_124_3'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2 seconds. CPU system time: 0 seconds. Elapsed time: 2.313 seconds; current allocated memory: 244.310 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2 seconds. CPU system time: 0 seconds. Elapsed time: 2.674 seconds; current allocated memory: 248.270 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'classifyinstance' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'classifyinstance/new_point_features' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'classifyinstance/new_point_classification_id' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'classifyinstance/best_points' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'classifyinstance/num_classes' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'classifyinstance/known_points_soa' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'classifyinstance/num_points' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'classifyinstance/num_features' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'classifyinstance' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Port 'classifyinstance/new_point_classification_id' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'classifyinstance/num_classes' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'classifyinstance/num_features' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+INFO: [RTGEN 206-100] Generating core module 'dadd_64ns_64ns_64_5_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'dadddsub_64ns_64ns_64_5_full_dsp_1': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'dcmp_64ns_64ns_1_2_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'dmul_64ns_64ns_64_4_max_dsp_1': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'classifyinstance'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 3 seconds. CPU system time: 0 seconds. Elapsed time: 2.312 seconds; current allocated memory: 254.067 MB.
+INFO: [RTMG 210-278] Implementing memory 'classifyinstance_histogram_ram (RAM)' using auto RAMs.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 6 seconds. CPU system time: 1 seconds. Elapsed time: 8.852 seconds; current allocated memory: 273.262 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for classifyinstance.
+INFO: [VLOG 209-307] Generating Verilog RTL for classifyinstance.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 61.89 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 17 seconds. CPU system time: 1 seconds. Elapsed time: 24.725 seconds; current allocated memory: 273.480 MB.
+INFO: [HLS 200-112] Total CPU user time: 21 seconds. Total CPU system time: 3 seconds. Total elapsed time: 28.486 seconds; peak allocated memory: 273.262 MB.

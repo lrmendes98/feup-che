@@ -1,4 +1,4 @@
-# 1 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.c"
+# 1 "src/knn.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 359 "<built-in>" 3
@@ -137,14 +137,14 @@
     void _ssdm_op_SpecBitsMap() __attribute__ ((nothrow));
     void _ssdm_op_SpecLicense() __attribute__ ((nothrow));
 # 2 "<built-in>" 2
-# 1 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.c" 2
-# 15 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.c"
-# 1 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/types.h" 1
+# 1 "src/knn.c" 2
+# 15 "src/knn.c"
+# 1 "src/types.h" 1
 
 
 
 
-# 1 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/params.h" 1
+# 1 "src/params.h" 1
 
 
 
@@ -336,8 +336,8 @@ __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) __attribute__ ((_
 
 extern long double __attribute__((__cdecl__)) _chgsignl (long double);
 # 46 "C:\\Xilinx\\Vitis_HLS\\2020.2\\win64\\tools\\clang-3.9-csynth\\lib\\clang\\7.0.0\\include\\float.h" 2 3
-# 5 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/params.h" 2
-# 6 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/types.h" 2
+# 5 "src/params.h" 2
+# 6 "src/types.h" 2
 
 typedef struct {
     double features[1082*43];
@@ -363,7 +363,7 @@ typedef struct {
     char classification_id[20];
     double distance[20];
 } BestPoint_SoA;
-# 16 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.c" 2
+# 16 "src/knn.c" 2
 # 1 "C:/Xilinx/Vitis_HLS/2020.2/tps/mingw/6.2.0/win64.o/nt\\x86_64-w64-mingw32\\include\\math.h" 1 3
 # 11 "C:/Xilinx/Vitis_HLS/2020.2/tps/mingw/6.2.0/win64.o/nt\\x86_64-w64-mingw32\\include\\math.h" 3
 
@@ -810,7 +810,7 @@ __extension__ long long __attribute__((__cdecl__)) llrintl (long double);
    extern long double __attribute__((__cdecl__)) _chgsignl (long double);
 # 1581 "C:/Xilinx/Vitis_HLS/2020.2/tps/mingw/6.2.0/win64.o/nt\\x86_64-w64-mingw32\\include\\math.h" 3
 #pragma pack(pop)
-# 17 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.c" 2
+# 17 "src/knn.c" 2
 
 
 
@@ -833,10 +833,10 @@ extern void __attribute__((__cdecl__))
 _wassert(const wchar_t *_Message,const wchar_t *_File,unsigned _Line);
 extern void __attribute__((__cdecl__))
 _assert (const char *_Message, const char *_File, unsigned _Line);
-# 22 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.c" 2
+# 22 "src/knn.c" 2
 
-# 1 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.h" 1
-# 21 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.h"
+# 1 "src/knn.h" 1
+# 21 "src/knn.h"
 void initialize_best(BestPoint_SoA *best_points, int k, int num_features);
 
 void update_best(double distance, char classID,
@@ -850,11 +850,11 @@ void knn(double* new_point_features, char new_point_classification_id,
 char classify(int k, BestPoint_SoA *best_points, int num_classes);
 
 __attribute__((sdx_kernel("classifyinstance", 0))) char classifyinstance(double* new_point_features,
-      char new_point_classification_id, int k,
+      char new_point_classification_id,
       BestPoint_SoA *best_points, int num_classes,
       Known_Points_SoA *known_points_soa, int num_points,
       int num_features);
-# 24 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.c" 2
+# 24 "src/knn.c" 2
 
 
 
@@ -873,7 +873,7 @@ void initialize_best(BestPoint_SoA *best_points, int k, int num_features) {
 
 
 void update_best(double distance, char classID,
-            BestPoint_SoA *restrict best_points, int k) {
+            BestPoint_SoA * best_points, int k) {
 
     double max = (double) 0.0;
     int index = 0;
@@ -899,25 +899,22 @@ void update_best(double distance, char classID,
 
 
 void knn(double* new_point_features, char new_point_classification_id,
-            Known_Points_SoA *restrict known_points_soa, int num_points,
-      BestPoint_SoA *restrict best_points, int k, int num_features) {
+            Known_Points_SoA * known_points_soa, int num_points,
+      BestPoint_SoA * best_points, int k, int num_features) {
 
     double distance = (double) 0.0;
     double diff;
     int j;
 
-#pragma omp parallel for private(j,diff) reduction(+:distance)
 
 
-
-
- VITIS_LOOP_80_1: for (int i = 0; i < num_points; i++) {
+    VITIS_LOOP_77_1: for (int i = 0; i < num_points; i++) {
         distance = (double) 0.0;
         double * known_point_features = known_points_soa->features;
         char known_point_classification_id = known_points_soa->classification_id[i];
 
 
-        VITIS_LOOP_86_2: for (j = 0; j < 43; j++) {
+        VITIS_LOOP_83_2: for (j = 0; j < 43; j++) {
             diff = (double) new_point_features[j+i] -
                                 (double) known_point_features[j+i];
             distance += diff * diff;
@@ -926,20 +923,20 @@ void knn(double* new_point_features, char new_point_classification_id,
         update_best(distance, known_point_classification_id, best_points, k);
     }
 }
-# 103 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.c"
+# 100 "src/knn.c"
 char classify(int k, BestPoint_SoA *best_points, int num_classes) {
 
     unsigned char histogram[6];
-    VITIS_LOOP_106_1: for (int i = 0; i < 6; i++) {
+    VITIS_LOOP_103_1: for (int i = 0; i < 6; i++) {
         histogram[i] = 0;
     }
 
 
 
 
-    VITIS_LOOP_113_2: for (int i = 0; i < 20; i++) {
+    VITIS_LOOP_110_2: for (int j = 0; j < 20; j++) {
 
-        int class_id = best_points->classification_id[i];
+        int class_id = best_points->classification_id[j];
 
 
 
@@ -951,11 +948,11 @@ char classify(int k, BestPoint_SoA *best_points, int num_classes) {
 
     unsigned char max = 0;
     char classification_id = 0;
-    VITIS_LOOP_127_3: for (int i = 0; i < 6; i++) {
+    VITIS_LOOP_124_3: for (int l = 0; l < 6; l++) {
 
-        if (histogram[i] > max) {
-            max = histogram[i];
-            classification_id = (char) i;
+        if (histogram[l] > max) {
+            max = histogram[l];
+            classification_id = (char) l;
         }
     }
 
@@ -967,22 +964,22 @@ char classify(int k, BestPoint_SoA *best_points, int num_classes) {
 
 
 __attribute__((sdx_kernel("classifyinstance", 0))) char classifyinstance(double* new_point_features, char new_point_classification_id,
-                        int k, BestPoint_SoA *best_points, int num_classes,
+                        BestPoint_SoA *best_points, int num_classes,
                         Known_Points_SoA *known_points_soa, int num_points, int num_features) {
 #pragma HLS TOP name=classifyinstance
-# 144 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.c"
+# 141 "src/knn.c"
 
 
 
 
-    initialize_best(best_points, k, num_features);
+    initialize_best(best_points, 20, num_features);
 
 
-    knn(new_point_features, new_point_classification_id, known_points_soa, num_points, best_points, k, num_features);
+    knn(new_point_features, new_point_classification_id, known_points_soa, num_points, best_points, 20, num_features);
 
 
 
- char classID = classify(k, best_points, num_classes);
+ char classID = classify(20, best_points, num_classes);
 
  return classID;
 }

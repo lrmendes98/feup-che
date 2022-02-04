@@ -41,21 +41,8 @@
           "direction": "in"
         }]
     },
-    "k": {
-      "index": "2",
-      "direction": "in",
-      "srcType": "int",
-      "srcSize": "32",
-      "hwRefs": [{
-          "type": "port",
-          "interface": "k",
-          "name": "k",
-          "usage": "data",
-          "direction": "in"
-        }]
-    },
     "best_points": {
-      "index": "3",
+      "index": "2",
       "direction": "inout",
       "srcType": "*",
       "srcSize": "1472",
@@ -119,7 +106,7 @@
       ]
     },
     "num_classes": {
-      "index": "4",
+      "index": "3",
       "direction": "in",
       "srcType": "int",
       "srcSize": "32",
@@ -132,7 +119,7 @@
         }]
     },
     "known_points_soa": {
-      "index": "5",
+      "index": "4",
       "direction": "in",
       "srcType": "*",
       "srcSize": "11967360",
@@ -182,7 +169,7 @@
       ]
     },
     "num_points": {
-      "index": "6",
+      "index": "5",
       "direction": "in",
       "srcType": "int",
       "srcSize": "32",
@@ -195,7 +182,7 @@
         }]
     },
     "num_features": {
-      "index": "7",
+      "index": "6",
       "direction": "in",
       "srcType": "int",
       "srcSize": "32",
@@ -222,6 +209,7 @@
   "HlsSolution": {
     "FlowTarget": "vivado",
     "DirectiveTcl": [
+      "set_directive_top classifyinstance -name classifyinstance",
       "set_directive_top classifyinstance -name classifyinstance",
       "set_directive_top classifyinstance -name classifyinstance"
     ],
@@ -252,8 +240,8 @@
   },
   "Files": {
     "CSource": [
-      "..\/..\/..\/feup-che\/Project\/Project\/OriginalProjectFiles-v0.6\/utils.c",
-      "..\/..\/..\/feup-che\/Project\/Project\/OriginalProjectFiles-v0.6\/knn.c"
+      "..\/..\/src\/utils.c",
+      "..\/..\/src\/knn.c"
     ],
     "Vhdl": [
       "impl\/vhdl\/classifyinstance_dadd_64ns_64ns_64_5_full_dsp_1.vhd",
@@ -280,7 +268,7 @@
     ],
     "DesignXml": ".autopilot\/db\/classifyinstance.design.xml",
     "DebugDir": ".debug",
-    "ProtoInst": ["C:\/Users\/up201700488\/Desktop\/che-vitis\/solution1\/.debug\/classifyinstance.protoinst"]
+    "ProtoInst": ["C:\/Users\/up201700488\/feup-che\/che-vitis\/solution1\/.debug\/classifyinstance.protoinst"]
   },
   "SubcoreInfo": {
     "HasXpmMemory": false,
@@ -418,20 +406,6 @@
           "mode": "ap_memory",
           "register_option": "0",
           "argName": "best_points"
-        }]
-    },
-    "k": {
-      "type": "data",
-      "busTypeName": "data",
-      "mode": "slave",
-      "dataWidth": "32",
-      "portMap": {"k": "DATA"},
-      "ports": ["k"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_none",
-          "register_option": "0",
-          "argName": "k"
         }]
     },
     "known_points_soa_address0": {
@@ -598,10 +572,6 @@
       "dir": "in",
       "width": "8"
     },
-    "k": {
-      "dir": "in",
-      "width": "32"
-    },
     "best_points_address0": {
       "dir": "out",
       "width": "5"
@@ -703,28 +673,28 @@
             "PipelineDepth": "2"
           },
           {
-            "Name": "VITIS_LOOP_80_1",
+            "Name": "VITIS_LOOP_77_1",
             "TripCount": "",
             "Latency": "",
             "PipelineII": "24",
             "PipelineDepth": "227"
           },
           {
-            "Name": "VITIS_LOOP_106_1",
+            "Name": "VITIS_LOOP_103_1",
             "TripCount": "6",
             "Latency": "6",
             "PipelineII": "1",
             "PipelineDepth": "1"
           },
           {
-            "Name": "VITIS_LOOP_113_2",
+            "Name": "VITIS_LOOP_110_2",
             "TripCount": "20",
             "Latency": "21",
             "PipelineII": "1",
             "PipelineDepth": "3"
           },
           {
-            "Name": "VITIS_LOOP_127_3",
+            "Name": "VITIS_LOOP_124_3",
             "TripCount": "6",
             "Latency": "7",
             "PipelineII": "1",
@@ -753,7 +723,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2022-01-31 16:43:37 +0000",
+    "Time": "2022-02-04 15:24:16 +0000",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }

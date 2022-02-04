@@ -1,4 +1,4 @@
-# 1 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.c"
+# 1 "src/utils.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 359 "<built-in>" 3
@@ -137,7 +137,7 @@
     void _ssdm_op_SpecBitsMap() __attribute__ ((nothrow));
     void _ssdm_op_SpecLicense() __attribute__ ((nothrow));
 # 2 "<built-in>" 2
-# 1 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.c" 2
+# 1 "src/utils.c" 2
 
 # 1 "C:/Xilinx/Vitis_HLS/2020.2/tps/mingw/6.2.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 1 3
 
@@ -989,7 +989,7 @@ void __attribute__((__cdecl__)) __mingw_str_free(void *ptr);
 
 # 1 "C:/Xilinx/Vitis_HLS/2020.2/tps/mingw/6.2.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_print_pop.h" 1 3
 # 1010 "C:/Xilinx/Vitis_HLS/2020.2/tps/mingw/6.2.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
-# 3 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.c" 2
+# 3 "src/utils.c" 2
 # 1 "C:\\Xilinx\\Vitis_HLS\\2020.2\\win64\\tools\\clang-3.9-csynth\\lib\\clang\\7.0.0\\include\\float.h" 1 3
 # 45 "C:\\Xilinx\\Vitis_HLS\\2020.2\\win64\\tools\\clang-3.9-csynth\\lib\\clang\\7.0.0\\include\\float.h" 3
 # 1 "C:/Xilinx/Vitis_HLS/2020.2/tps/mingw/6.2.0/win64.o/nt\\x86_64-w64-mingw32\\include\\float.h" 1 3
@@ -1021,7 +1021,7 @@ __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) __attribute__ ((_
 
 extern long double __attribute__((__cdecl__)) _chgsignl (long double);
 # 46 "C:\\Xilinx\\Vitis_HLS\\2020.2\\win64\\tools\\clang-3.9-csynth\\lib\\clang\\7.0.0\\include\\float.h" 2 3
-# 4 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.c" 2
+# 4 "src/utils.c" 2
 # 1 "C:/Xilinx/Vitis_HLS/2020.2/tps/mingw/6.2.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 1 3
 # 10 "C:/Xilinx/Vitis_HLS/2020.2/tps/mingw/6.2.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
 # 1 "C:\\Xilinx\\Vitis_HLS\\2020.2\\win64\\tools\\clang-3.9-csynth\\lib\\clang\\7.0.0\\include\\limits.h" 1 3
@@ -1591,9 +1591,9 @@ void * __mingw_aligned_realloc (void *_Memory, size_t _Size, size_t _Offset);
 # 209 "C:/Xilinx/Vitis_HLS/2020.2/tps/mingw/6.2.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
 #pragma pack(pop)
 # 687 "C:/Xilinx/Vitis_HLS/2020.2/tps/mingw/6.2.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
-# 5 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.c" 2
+# 5 "src/utils.c" 2
 
-# 1 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.h" 1
+# 1 "src/utils.h" 1
 
 
 
@@ -2033,11 +2033,11 @@ __extension__ long long __attribute__((__cdecl__)) llrintl (long double);
    extern long double __attribute__((__cdecl__)) _chgsignl (long double);
 # 1581 "C:/Xilinx/Vitis_HLS/2020.2/tps/mingw/6.2.0/win64.o/nt\\x86_64-w64-mingw32\\include\\math.h" 3
 #pragma pack(pop)
-# 5 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.h" 2
+# 5 "src/utils.h" 2
 
-# 1 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/params.h" 1
-# 7 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.h" 2
-# 1 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/types.h" 1
+# 1 "src/params.h" 1
+# 7 "src/utils.h" 2
+# 1 "src/types.h" 1
 
 
 
@@ -2068,7 +2068,7 @@ typedef struct {
     char classification_id[20];
     double distance[20];
 } BestPoint_SoA;
-# 8 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.h" 2
+# 8 "src/utils.h" 2
 
 char get_class_name(char class_id);
 
@@ -2088,7 +2088,7 @@ void minmax(double *min, double *max, int num_points, Point *known_points,
 
 void minmax_normalize(double *min, double *max, int num_points, Point *points,
      int num_features);
-# 7 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.c" 2
+# 7 "src/utils.c" 2
 
 
 
@@ -2237,7 +2237,7 @@ void minmax(double *min, double *max, int num_points, Point *known_points, int n
     max[j] = known_points[i].features[j];
         }
     }
-# 170 "../feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.c"
+# 170 "src/utils.c"
 }
 
 

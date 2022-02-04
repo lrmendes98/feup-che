@@ -39,7 +39,7 @@ void initialize_best(BestPoint_SoA *best_points, int k, int num_features) {
 * It receives a new Point and updates the k nearest accordingly.
 */
 void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID, 
-            BestPoint_SoA *restrict best_points, int k) {
+            BestPoint_SoA * best_points, int k) {
 
     DATA_TYPE max = (DATA_TYPE) 0.0;
     int index = 0;
@@ -65,16 +65,13 @@ void update_best(DATA_TYPE distance, CLASS_ID_TYPE classID,
 * It calculates the distances and calculates the nearest k points.
 */
 void knn(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, 
-            Known_Points_SoA *restrict known_points_soa, int num_points, 
-		    BestPoint_SoA *restrict best_points, int k, int num_features) {
+            Known_Points_SoA * known_points_soa, int num_points,
+		    BestPoint_SoA * best_points, int k, int num_features) {
 
     DATA_TYPE distance = (DATA_TYPE) 0.0;
     DATA_TYPE diff;
     int j;
     
-    #pragma omp parallel for \
-        private(j,diff) reduction(+:distance)
-
     // calculate the Euclidean distance between the Point to classify and each one in the model
     // and update the k best points if needed
     for (int i = 0; i < num_points; i++) {
@@ -110,9 +107,9 @@ CLASS_ID_TYPE classify(int k, BestPoint_SoA *best_points, int num_classes) {
     //DATA_TYPE min_distance = MAX_FP_VAL;
 
 	// build histogram
-    for (int i = 0; i < K; i++) {
+    for (int j = 0; j < K; j++) {
 
-        int class_id = best_points->classification_id[i];
+        int class_id = best_points->classification_id[j];
         //if (best_points[i].distance < min_distance) {
         //    min_distance = best_points[i].distance;
         //}
@@ -124,11 +121,11 @@ CLASS_ID_TYPE classify(int k, BestPoint_SoA *best_points, int num_classes) {
 
     unsigned CLASS_ID_TYPE max = 0; // maximum is the highest class id +1
     CLASS_ID_TYPE classification_id = 0;
-    for (int i = 0; i < NUM_CLASSES; i++) {
+    for (int l = 0; l < NUM_CLASSES; l++) {
 
-        if (histogram[i] > max) {
-            max = histogram[i];
-            classification_id = (CLASS_ID_TYPE) i;
+        if (histogram[l] > max) {
+            max = histogram[l];
+            classification_id = (CLASS_ID_TYPE) l;
         }
     }
 
@@ -140,19 +137,19 @@ CLASS_ID_TYPE classify(int k, BestPoint_SoA *best_points, int num_classes) {
 * It returns the classified class ID.
 */ 
 CLASS_ID_TYPE classifyinstance(DATA_TYPE* new_point_features, CLASS_ID_TYPE new_point_classification_id, 
-                        int k, BestPoint_SoA *best_points, int num_classes, 
+                        BestPoint_SoA *best_points, int num_classes,
                         Known_Points_SoA *known_points_soa, int num_points, int num_features) {
 
 	// initialize the data structure with the best points
 	// this must be done for every new instance to classify
-    initialize_best(best_points, k, num_features);
+    initialize_best(best_points, K, num_features);
 
     // classify the Point based on the K nearest points
-    knn(new_point_features, new_point_classification_id, known_points_soa, num_points, best_points, k, num_features);
+    knn(new_point_features, new_point_classification_id, known_points_soa, num_points, best_points, K, num_features);
     
 	// invoke and return the classification. the classify function could be part of
 	// the knn function
-	CLASS_ID_TYPE classID = classify(k, best_points, num_classes);
+	CLASS_ID_TYPE classID = classify(K, best_points, num_classes);
 	
 	return classID;
 }

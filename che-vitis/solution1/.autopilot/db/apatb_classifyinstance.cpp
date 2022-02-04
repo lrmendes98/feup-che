@@ -24,9 +24,6 @@ using namespace sc_dt;
 #define AUTOTB_TVIN_new_point_classification_id "../tv/cdatafile/c.classifyinstance.autotvin_new_point_classification_id.dat"
 #define AUTOTB_TVOUT_new_point_classification_id "../tv/cdatafile/c.classifyinstance.autotvout_new_point_classification_id.dat"
 // wrapc file define:
-#define AUTOTB_TVIN_k "../tv/cdatafile/c.classifyinstance.autotvin_k.dat"
-#define AUTOTB_TVOUT_k "../tv/cdatafile/c.classifyinstance.autotvout_k.dat"
-// wrapc file define:
 #define AUTOTB_TVIN_best_points "../tv/cdatafile/c.classifyinstance.autotvin_best_points.dat"
 #define AUTOTB_TVOUT_best_points "../tv/cdatafile/c.classifyinstance.autotvout_best_points.dat"
 // wrapc file define:
@@ -51,8 +48,6 @@ using namespace sc_dt;
 // tvout file define:
 #define AUTOTB_TVOUT_PC_new_point_classification_id "../tv/rtldatafile/rtl.classifyinstance.autotvout_new_point_classification_id.dat"
 // tvout file define:
-#define AUTOTB_TVOUT_PC_k "../tv/rtldatafile/rtl.classifyinstance.autotvout_k.dat"
-// tvout file define:
 #define AUTOTB_TVOUT_PC_best_points "../tv/rtldatafile/rtl.classifyinstance.autotvout_best_points.dat"
 // tvout file define:
 #define AUTOTB_TVOUT_PC_num_classes "../tv/rtldatafile/rtl.classifyinstance.autotvout_num_classes.dat"
@@ -70,7 +65,6 @@ INTER_TCL_FILE(const char* name) {
   mName = name; 
   new_point_features_depth = 0;
   new_point_classification_id_depth = 0;
-  k_depth = 0;
   best_points_depth = 0;
   num_classes_depth = 0;
   known_points_soa_depth = 0;
@@ -96,7 +90,6 @@ string get_depth_list () {
   stringstream total_list;
   total_list << "{new_point_features " << new_point_features_depth << "}\n";
   total_list << "{new_point_classification_id " << new_point_classification_id_depth << "}\n";
-  total_list << "{k " << k_depth << "}\n";
   total_list << "{best_points " << best_points_depth << "}\n";
   total_list << "{num_classes " << num_classes_depth << "}\n";
   total_list << "{known_points_soa " << known_points_soa_depth << "}\n";
@@ -114,7 +107,6 @@ void set_string(std::string list, std::string* class_list) {
   public:
     int new_point_features_depth;
     int new_point_classification_id_depth;
-    int k_depth;
     int best_points_depth;
     int num_classes_depth;
     int known_points_soa_depth;
@@ -162,9 +154,9 @@ static void RTLOutputCheckAndReplacement(std::string &AESL_token, std::string Po
       no_x = true;
   }
 }
-extern "C" char classifyinstance_hw_stub_wrapper(volatile void *, char, int, volatile void *, int, volatile void *, int, int);
+extern "C" char classifyinstance_hw_stub_wrapper(volatile void *, char, volatile void *, int, volatile void *, int, int);
 
-extern "C" char apatb_classifyinstance_hw(volatile void * __xlx_apatb_param_new_point_features, char __xlx_apatb_param_new_point_classification_id, int __xlx_apatb_param_k, volatile void * __xlx_apatb_param_best_points, int __xlx_apatb_param_num_classes, volatile void * __xlx_apatb_param_known_points_soa, int __xlx_apatb_param_num_points, int __xlx_apatb_param_num_features) {
+extern "C" char apatb_classifyinstance_hw(volatile void * __xlx_apatb_param_new_point_features, char __xlx_apatb_param_new_point_classification_id, volatile void * __xlx_apatb_param_best_points, int __xlx_apatb_param_num_classes, volatile void * __xlx_apatb_param_known_points_soa, int __xlx_apatb_param_num_points, int __xlx_apatb_param_num_features) {
   refine_signal_handler();
   fstream wrapc_switch_file_token;
   wrapc_switch_file_token.open(".hls_cosim_wrapc_switch.log");
@@ -280,9 +272,6 @@ aesl_fh.touch(AUTOTB_TVOUT_new_point_features);
 //new_point_classification_id
 aesl_fh.touch(AUTOTB_TVIN_new_point_classification_id);
 aesl_fh.touch(AUTOTB_TVOUT_new_point_classification_id);
-//k
-aesl_fh.touch(AUTOTB_TVIN_k);
-aesl_fh.touch(AUTOTB_TVOUT_k);
 //best_points
 aesl_fh.touch(AUTOTB_TVIN_best_points);
 aesl_fh.touch(AUTOTB_TVOUT_best_points);
@@ -326,20 +315,6 @@ CodeState = DUMP_INPUTS;
   tcl_file.set_num(1, &tcl_file.new_point_classification_id_depth);
   sprintf(__xlx_sprintf_buffer.data(), "[[/transaction]] \n");
   aesl_fh.write(AUTOTB_TVIN_new_point_classification_id, __xlx_sprintf_buffer.data());
-}
-// print k Transactions
-{
-  sprintf(__xlx_sprintf_buffer.data(), "[[transaction]] %d\n", AESL_transaction);
-  aesl_fh.write(AUTOTB_TVIN_k, __xlx_sprintf_buffer.data());
-  {
-    sc_bv<32> __xlx_tmp_lv = *((int*)&__xlx_apatb_param_k);
-
-    sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
-    aesl_fh.write(AUTOTB_TVIN_k, __xlx_sprintf_buffer.data()); 
-  }
-  tcl_file.set_num(1, &tcl_file.k_depth);
-  sprintf(__xlx_sprintf_buffer.data(), "[[/transaction]] \n");
-  aesl_fh.write(AUTOTB_TVIN_k, __xlx_sprintf_buffer.data());
 }
 unsigned __xlx_offset_byte_param_best_points = 0;
 // print best_points Transactions
@@ -422,7 +397,7 @@ sc_bv<64> __xlx_tmp_lv = ((long long*)__xlx_apatb_param_known_points_soa)[j];
   aesl_fh.write(AUTOTB_TVIN_num_features, __xlx_sprintf_buffer.data());
 }
 CodeState = CALL_C_DUT;
-char ap_return = classifyinstance_hw_stub_wrapper(__xlx_apatb_param_new_point_features, __xlx_apatb_param_new_point_classification_id, __xlx_apatb_param_k, __xlx_apatb_param_best_points, __xlx_apatb_param_num_classes, __xlx_apatb_param_known_points_soa, __xlx_apatb_param_num_points, __xlx_apatb_param_num_features);
+char ap_return = classifyinstance_hw_stub_wrapper(__xlx_apatb_param_new_point_features, __xlx_apatb_param_new_point_classification_id, __xlx_apatb_param_best_points, __xlx_apatb_param_num_classes, __xlx_apatb_param_known_points_soa, __xlx_apatb_param_num_points, __xlx_apatb_param_num_features);
 CodeState = DUMP_OUTPUTS;
 // print best_points Transactions
 {

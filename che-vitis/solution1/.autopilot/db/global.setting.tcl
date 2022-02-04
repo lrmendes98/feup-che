@@ -42,10 +42,10 @@ set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xc7z020:-clg484:-1
-set SourceFiles {sc {} c {../../../feup-che/Project/Project/OriginalProjectFiles-v0.6/utils.c ../../../feup-che/Project/Project/OriginalProjectFiles-v0.6/knn.c}}
+set SourceFiles {sc {} c {../../src/utils.c ../../src/knn.c}}
 set SourceFlags {sc {} c {{} {}}}
-set DirectiveFile C:/Users/up201700488/Desktop/che-vitis/solution1/solution1.directive
-set TBFiles {verilog ../../../feup-che/Project/Project/OriginalProjectFiles-v0.6/main.c bc ../../../feup-che/Project/Project/OriginalProjectFiles-v0.6/main.c vhdl ../../../feup-che/Project/Project/OriginalProjectFiles-v0.6/main.c sc ../../../feup-che/Project/Project/OriginalProjectFiles-v0.6/main.c cas ../../../feup-che/Project/Project/OriginalProjectFiles-v0.6/main.c c {}}
+set DirectiveFile C:/Users/up201700488/feup-che/che-vitis/solution1/solution1.directive
+set TBFiles {verilog ../../src/main.c bc ../../src/main.c vhdl ../../src/main.c sc ../../src/main.c cas ../../src/main.c c {}}
 set SpecLanguage C
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

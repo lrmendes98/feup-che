@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'classifyinstance'" level="0">
-<item name = "Date">Mon Jan 31 16:43:27 2022
+<item name = "Date">Fri Feb  4 15:24:05 2022
 </item>
 <item name = "Version">2020.2 (Build 3064766 on Wed Nov 18 09:12:45 MST 2020)</item>
 <item name = "Project">che-vitis</item>
@@ -36,10 +36,10 @@
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
 <column name="- VITIS_LOOP_29_1">40, 40, 2, 2, 1, 20, yes</column>
-<column name="- VITIS_LOOP_80_1">?, ?, 227, 24, 1, ?, yes</column>
-<column name="- VITIS_LOOP_106_1">6, 6, 1, 1, 1, 6, yes</column>
-<column name="- VITIS_LOOP_113_2">21, 21, 3, 1, 1, 20, yes</column>
-<column name="- VITIS_LOOP_127_3">7, 7, 2, 1, 1, 6, yes</column>
+<column name="- VITIS_LOOP_77_1">?, ?, 227, 24, 1, ?, yes</column>
+<column name="- VITIS_LOOP_103_1">6, 6, 1, 1, 1, 6, yes</column>
+<column name="- VITIS_LOOP_110_2">21, 21, 3, 1, 1, 20, yes</column>
+<column name="- VITIS_LOOP_124_3">7, 7, 2, 1, 1, 6, yes</column>
 </table>
 </item>
 </section>

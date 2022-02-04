@@ -1,4 +1,4 @@
-; ModuleID = 'C:/Users/up201700488/Desktop/che-vitis/solution1/.autopilot/db/a.g.ld.5.gdce.bc'
+; ModuleID = 'C:/Users/up201700488/feup-che/che-vitis/solution1/.autopilot/db/a.g.ld.5.gdce.bc'
 source_filename = "llvm-link"
 target datalayout = "e-m:e-i64:64-i128:128-i256:256-i512:512-i1024:1024-i2048:2048-i4096:4096-n8:16:32:64-S128-v16:16-v24:32-v32:32-v48:64-v96:128-v192:256-v256:256-v512:512-v1024:1024"
 target triple = "fpga64-xilinx-none"
@@ -7,14 +7,14 @@ target triple = "fpga64-xilinx-none"
 %struct.Known_Points_SoA = type { [186448 x double], [4336 x i8] }
 
 ; Function Attrs: noinline
-define i8 @apatb_classifyinstance_ir(double* %new_point_features, i8 %new_point_classification_id, i32 %k, %struct.BestPoint_SoA* %best_points, i32 %num_classes, %struct.Known_Points_SoA* %known_points_soa, i32 %num_points, i32 %num_features) local_unnamed_addr #0 {
+define i8 @apatb_classifyinstance_ir(double* %new_point_features, i8 %new_point_classification_id, %struct.BestPoint_SoA* %best_points, i32 %num_classes, %struct.Known_Points_SoA* %known_points_soa, i32 %num_points, i32 %num_features) local_unnamed_addr #0 {
 entry:
   %new_point_features_copy = alloca double, align 512
   %best_points_copy = alloca %struct.BestPoint_SoA, align 512
   %malloccall = tail call i8* @malloc(i64 1495920)
   %known_points_soa_copy = bitcast i8* %malloccall to %struct.Known_Points_SoA*
   call fastcc void @copy_in(double* %new_point_features, double* nonnull align 512 %new_point_features_copy, %struct.BestPoint_SoA* %best_points, %struct.BestPoint_SoA* nonnull align 512 %best_points_copy, %struct.Known_Points_SoA* %known_points_soa, %struct.Known_Points_SoA* %known_points_soa_copy)
-  %0 = call i8 @apatb_classifyinstance_hw(double* %new_point_features_copy, i8 %new_point_classification_id, i32 %k, %struct.BestPoint_SoA* %best_points_copy, i32 %num_classes, %struct.Known_Points_SoA* %known_points_soa_copy, i32 %num_points, i32 %num_features)
+  %0 = call i8 @apatb_classifyinstance_hw(double* %new_point_features_copy, i8 %new_point_classification_id, %struct.BestPoint_SoA* %best_points_copy, i32 %num_classes, %struct.Known_Points_SoA* %known_points_soa_copy, i32 %num_points, i32 %num_features)
   call fastcc void @copy_out(double* %new_point_features, double* nonnull align 512 %new_point_features_copy, %struct.BestPoint_SoA* %best_points, %struct.BestPoint_SoA* nonnull align 512 %best_points_copy, %struct.Known_Points_SoA* %known_points_soa, %struct.Known_Points_SoA* %known_points_soa_copy)
   tail call void @free(i8* %malloccall)
   ret i8 %0
@@ -139,17 +139,17 @@ entry:
 
 declare void @free(i8*) local_unnamed_addr
 
-declare i8 @apatb_classifyinstance_hw(double*, i8, i32, %struct.BestPoint_SoA*, i32, %struct.Known_Points_SoA*, i32, i32)
+declare i8 @apatb_classifyinstance_hw(double*, i8, %struct.BestPoint_SoA*, i32, %struct.Known_Points_SoA*, i32, i32)
 
-define i8 @classifyinstance_hw_stub_wrapper(double*, i8, i32, %struct.BestPoint_SoA*, i32, %struct.Known_Points_SoA*, i32, i32) #5 {
+define i8 @classifyinstance_hw_stub_wrapper(double*, i8, %struct.BestPoint_SoA*, i32, %struct.Known_Points_SoA*, i32, i32) #5 {
 entry:
-  call void @copy_out(double* null, double* %0, %struct.BestPoint_SoA* null, %struct.BestPoint_SoA* %3, %struct.Known_Points_SoA* null, %struct.Known_Points_SoA* %5)
-  %8 = call i8 @classifyinstance_hw_stub(double* %0, i8 %1, i32 %2, %struct.BestPoint_SoA* %3, i32 %4, %struct.Known_Points_SoA* %5, i32 %6, i32 %7)
-  call void @copy_in(double* null, double* %0, %struct.BestPoint_SoA* null, %struct.BestPoint_SoA* %3, %struct.Known_Points_SoA* null, %struct.Known_Points_SoA* %5)
-  ret i8 %8
+  call void @copy_out(double* null, double* %0, %struct.BestPoint_SoA* null, %struct.BestPoint_SoA* %2, %struct.Known_Points_SoA* null, %struct.Known_Points_SoA* %4)
+  %7 = call i8 @classifyinstance_hw_stub(double* %0, i8 %1, %struct.BestPoint_SoA* %2, i32 %3, %struct.Known_Points_SoA* %4, i32 %5, i32 %6)
+  call void @copy_in(double* null, double* %0, %struct.BestPoint_SoA* null, %struct.BestPoint_SoA* %2, %struct.Known_Points_SoA* null, %struct.Known_Points_SoA* %4)
+  ret i8 %7
 }
 
-declare i8 @classifyinstance_hw_stub(double*, i8, i32, %struct.BestPoint_SoA*, i32, %struct.Known_Points_SoA*, i32, i32)
+declare i8 @classifyinstance_hw_stub(double*, i8, %struct.BestPoint_SoA*, i32, %struct.Known_Points_SoA*, i32, i32)
 
 attributes #0 = { noinline "fpga.wrapper.func"="wrapper" }
 attributes #1 = { argmemonly noinline "fpga.wrapper.func"="copyin" }

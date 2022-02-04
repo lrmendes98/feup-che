@@ -14,7 +14,6 @@ set C_modelType { int 8 }
 set C_modelArgList {
 	{ new_point_features int 64 regular {pointer 0}  }
 	{ new_point_classification_id int 8 unused  }
-	{ k int 32 unused  }
 	{ best_points int 64 regular {array 23 { 2 1 } 1 1 }  }
 	{ num_classes int 32 unused  }
 	{ known_points_soa int 64 regular {array 186990 { 1 1 } 1 1 }  }
@@ -24,7 +23,6 @@ set C_modelArgList {
 set C_modelArgMapList {[ 
 	{ "Name" : "new_point_features", "interface" : "wire", "bitwidth" : 64, "direction" : "READONLY", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "new_point_features","cData": "long","bit_use": { "low": 0,"up": 0},"cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
  	{ "Name" : "new_point_classification_id", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "new_point_classification_id","cData": "char","bit_use": { "low": 0,"up": 0},"cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
- 	{ "Name" : "k", "interface" : "wire", "bitwidth" : 32, "direction" : "READONLY", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "k","cData": "int","bit_use": { "low": 0,"up": 0},"cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
  	{ "Name" : "best_points", "interface" : "memory", "bitwidth" : 64, "direction" : "READWRITE", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "best_points","cData": "long","bit_use": { "low": 0,"up": 0},"cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
  	{ "Name" : "num_classes", "interface" : "wire", "bitwidth" : 32, "direction" : "READONLY", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "num_classes","cData": "int","bit_use": { "low": 0,"up": 0},"cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
  	{ "Name" : "known_points_soa", "interface" : "memory", "bitwidth" : 64, "direction" : "READONLY", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "known_points_soa","cData": "long","bit_use": { "low": 0,"up": 0},"cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
@@ -32,7 +30,7 @@ set C_modelArgMapList {[
  	{ "Name" : "num_features", "interface" : "wire", "bitwidth" : 32, "direction" : "READONLY", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "num_features","cData": "int","bit_use": { "low": 0,"up": 0},"cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
  	{ "Name" : "ap_return", "interface" : "wire", "bitwidth" : 8,"bitSlice":[{"low":0,"up":7,"cElement": [{"cName": "return","cData": "char","bit_use": { "low": 0,"up": 7},"cArray": [{"low" : 0,"up" : 1,"step" : 0}]}]}]} ]}
 # RTL Port declarations: 
-set portNum 27
+set portNum 26
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
@@ -42,24 +40,23 @@ set portList {
 	{ ap_ready sc_out sc_logic 1 ready -1 } 
 	{ new_point_features sc_in sc_lv 64 signal 0 } 
 	{ new_point_classification_id sc_in sc_lv 8 signal 1 } 
-	{ k sc_in sc_lv 32 signal 2 } 
-	{ best_points_address0 sc_out sc_lv 5 signal 3 } 
-	{ best_points_ce0 sc_out sc_logic 1 signal 3 } 
-	{ best_points_we0 sc_out sc_lv 8 signal 3 } 
-	{ best_points_d0 sc_out sc_lv 64 signal 3 } 
-	{ best_points_q0 sc_in sc_lv 64 signal 3 } 
-	{ best_points_address1 sc_out sc_lv 5 signal 3 } 
-	{ best_points_ce1 sc_out sc_logic 1 signal 3 } 
-	{ best_points_q1 sc_in sc_lv 64 signal 3 } 
-	{ num_classes sc_in sc_lv 32 signal 4 } 
-	{ known_points_soa_address0 sc_out sc_lv 18 signal 5 } 
-	{ known_points_soa_ce0 sc_out sc_logic 1 signal 5 } 
-	{ known_points_soa_q0 sc_in sc_lv 64 signal 5 } 
-	{ known_points_soa_address1 sc_out sc_lv 18 signal 5 } 
-	{ known_points_soa_ce1 sc_out sc_logic 1 signal 5 } 
-	{ known_points_soa_q1 sc_in sc_lv 64 signal 5 } 
-	{ num_points sc_in sc_lv 32 signal 6 } 
-	{ num_features sc_in sc_lv 32 signal 7 } 
+	{ best_points_address0 sc_out sc_lv 5 signal 2 } 
+	{ best_points_ce0 sc_out sc_logic 1 signal 2 } 
+	{ best_points_we0 sc_out sc_lv 8 signal 2 } 
+	{ best_points_d0 sc_out sc_lv 64 signal 2 } 
+	{ best_points_q0 sc_in sc_lv 64 signal 2 } 
+	{ best_points_address1 sc_out sc_lv 5 signal 2 } 
+	{ best_points_ce1 sc_out sc_logic 1 signal 2 } 
+	{ best_points_q1 sc_in sc_lv 64 signal 2 } 
+	{ num_classes sc_in sc_lv 32 signal 3 } 
+	{ known_points_soa_address0 sc_out sc_lv 18 signal 4 } 
+	{ known_points_soa_ce0 sc_out sc_logic 1 signal 4 } 
+	{ known_points_soa_q0 sc_in sc_lv 64 signal 4 } 
+	{ known_points_soa_address1 sc_out sc_lv 18 signal 4 } 
+	{ known_points_soa_ce1 sc_out sc_logic 1 signal 4 } 
+	{ known_points_soa_q1 sc_in sc_lv 64 signal 4 } 
+	{ num_points sc_in sc_lv 32 signal 5 } 
+	{ num_features sc_in sc_lv 32 signal 6 } 
 	{ ap_return sc_out sc_lv 8 signal -1 } 
 }
 set NewPortList {[ 
@@ -71,7 +68,6 @@ set NewPortList {[
  	{ "name": "ap_ready", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "ready", "bundle":{"name": "ap_ready", "role": "default" }} , 
  	{ "name": "new_point_features", "direction": "in", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "new_point_features", "role": "default" }} , 
  	{ "name": "new_point_classification_id", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "new_point_classification_id", "role": "default" }} , 
- 	{ "name": "k", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "k", "role": "default" }} , 
  	{ "name": "best_points_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":5, "type": "signal", "bundle":{"name": "best_points", "role": "address0" }} , 
  	{ "name": "best_points_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "best_points", "role": "ce0" }} , 
  	{ "name": "best_points_we0", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "best_points", "role": "we0" }} , 
@@ -108,7 +104,6 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "new_point_features", "Type" : "None", "Direction" : "I"},
 			{"Name" : "new_point_classification_id", "Type" : "None", "Direction" : "I"},
-			{"Name" : "k", "Type" : "None", "Direction" : "I"},
 			{"Name" : "best_points", "Type" : "Memory", "Direction" : "IO"},
 			{"Name" : "num_classes", "Type" : "None", "Direction" : "I"},
 			{"Name" : "known_points_soa", "Type" : "Memory", "Direction" : "I"},
@@ -128,7 +123,6 @@ set ArgLastReadFirstWriteLatency {
 	classifyinstance {
 		new_point_features {Type I LastRead 2 FirstWrite -1}
 		new_point_classification_id {Type I LastRead -1 FirstWrite -1}
-		k {Type I LastRead -1 FirstWrite -1}
 		best_points {Type IO LastRead 216 FirstWrite 1}
 		num_classes {Type I LastRead -1 FirstWrite -1}
 		known_points_soa {Type I LastRead 25 FirstWrite -1}
@@ -151,7 +145,6 @@ set PipelineEnableSignalInfo {[
 set Spec2ImplPortList { 
 	new_point_features { ap_none {  { new_point_features in_data 0 64 } } }
 	new_point_classification_id { ap_none {  { new_point_classification_id in_data 0 8 } } }
-	k { ap_none {  { k in_data 0 32 } } }
 	best_points { ap_memory {  { best_points_address0 mem_address 1 5 }  { best_points_ce0 mem_ce 1 1 }  { best_points_we0 mem_we 1 8 }  { best_points_d0 mem_din 1 64 }  { best_points_q0 mem_dout 0 64 }  { best_points_address1 MemPortADDR2 1 5 }  { best_points_ce1 MemPortCE2 1 1 }  { best_points_q1 MemPortDOUT2 0 64 } } }
 	num_classes { ap_none {  { num_classes in_data 0 32 } } }
 	known_points_soa { ap_memory {  { known_points_soa_address0 mem_address 1 18 }  { known_points_soa_ce0 mem_ce 1 1 }  { known_points_soa_q0 mem_dout 0 64 }  { known_points_soa_address1 MemPortADDR2 1 18 }  { known_points_soa_ce1 MemPortCE2 1 1 }  { known_points_soa_q1 MemPortDOUT2 0 64 } } }

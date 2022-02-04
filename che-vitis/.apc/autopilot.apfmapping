@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="knn.c" path="C:\Users\up201700488\feup-che\Project\Project\OriginalProjectFiles-v0.6\knn.c"/>
-    <originFiles name="knn.h" path="C:\Users\up201700488\feup-che\Project\Project\OriginalProjectFiles-v0.6\knn.h"/>
-    <originFiles name="params.h" path="C:\Users\up201700488\feup-che\Project\Project\OriginalProjectFiles-v0.6\params.h"/>
-    <originFiles name="types.h" path="C:\Users\up201700488\feup-che\Project\Project\OriginalProjectFiles-v0.6\types.h"/>
-    <originFiles name="utils.c" path="C:\Users\up201700488\feup-che\Project\Project\OriginalProjectFiles-v0.6\utils.c"/>
-    <originFiles name="utils.h" path="C:\Users\up201700488\feup-che\Project\Project\OriginalProjectFiles-v0.6\utils.h"/>
+    <originFiles name="knn.c" path="C:\Users\up201700488\feup-che\src\knn.c"/>
+    <originFiles name="knn.h" path="C:\Users\up201700488\feup-che\src\knn.h"/>
+    <originFiles name="params.h" path="C:\Users\up201700488\feup-che\src\params.h"/>
+    <originFiles name="utils.c" path="C:\Users\up201700488\feup-che\src\utils.c"/>
+    <originFiles name="utils.h" path="C:\Users\up201700488\feup-che\src\utils.h"/>
+    <originFiles name="types.h" path="C:\Users\up201700488\feup-che\src\types.h"/>
   </source>
   <testbench>
-    <originFiles name="main.c" path="C:\Users\up201700488\feup-che\Project\Project\OriginalProjectFiles-v0.6\main.c"/>
+    <originFiles name="main.c" path="C:\Users\up201700488\feup-che\src\main.c"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

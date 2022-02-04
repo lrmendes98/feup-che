@@ -11,32 +11,27 @@
           <constraint constraint_type="pragma interface" mode="ap_none" register_option="0"/>
         </hw>
       </arg>
-      <arg id="2" access_type="r" src_name="k" src_type="int" src_isptr="0" src_bitwidth="32" src_size_or_depth="1">
-        <hw hw_usage="data" hw_interface="Register" hw_name="k" hw_bitwidth="32" hw_size_or_depth="1">
-          <constraint constraint_type="pragma interface" mode="ap_none" register_option="0"/>
-        </hw>
-      </arg>
-      <arg id="3" access_type="rw" src_name="best_points" src_type="*" src_isptr="1" src_bitwidth="1472" src_size_or_depth="1">
+      <arg id="2" access_type="rw" src_name="best_points" src_type="*" src_isptr="1" src_bitwidth="1472" src_size_or_depth="1">
         <hw hw_usage="data" hw_interface="BRAM" hw_name="best_points" hw_bitwidth="64" hw_size_or_depth="23">
           <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
         </hw>
       </arg>
-      <arg id="4" access_type="r" src_name="num_classes" src_type="int" src_isptr="0" src_bitwidth="32" src_size_or_depth="1">
+      <arg id="3" access_type="r" src_name="num_classes" src_type="int" src_isptr="0" src_bitwidth="32" src_size_or_depth="1">
         <hw hw_usage="data" hw_interface="Register" hw_name="num_classes" hw_bitwidth="32" hw_size_or_depth="1">
           <constraint constraint_type="pragma interface" mode="ap_none" register_option="0"/>
         </hw>
       </arg>
-      <arg id="5" access_type="r" src_name="known_points_soa" src_type="*" src_isptr="1" src_bitwidth="11967360" src_size_or_depth="1">
+      <arg id="4" access_type="r" src_name="known_points_soa" src_type="*" src_isptr="1" src_bitwidth="11967360" src_size_or_depth="1">
         <hw hw_usage="data" hw_interface="BRAM" hw_name="known_points_soa" hw_bitwidth="64" hw_size_or_depth="186990">
           <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
         </hw>
       </arg>
-      <arg id="6" access_type="r" src_name="num_points" src_type="int" src_isptr="0" src_bitwidth="32" src_size_or_depth="1">
+      <arg id="5" access_type="r" src_name="num_points" src_type="int" src_isptr="0" src_bitwidth="32" src_size_or_depth="1">
         <hw hw_usage="data" hw_interface="Register" hw_name="num_points" hw_bitwidth="32" hw_size_or_depth="1">
           <constraint constraint_type="pragma interface" mode="ap_none" register_option="0"/>
         </hw>
       </arg>
-      <arg id="7" access_type="r" src_name="num_features" src_type="int" src_isptr="0" src_bitwidth="32" src_size_or_depth="1">
+      <arg id="6" access_type="r" src_name="num_features" src_type="int" src_isptr="0" src_bitwidth="32" src_size_or_depth="1">
         <hw hw_usage="data" hw_interface="Register" hw_name="num_features" hw_bitwidth="32" hw_size_or_depth="1">
           <constraint constraint_type="pragma interface" mode="ap_none" register_option="0"/>
         </hw>
